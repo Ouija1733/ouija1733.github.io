@@ -1,0 +1,131 @@
+<!doctype html>
+<!-- Open Graph preview, 1200x630. Rendered to assets/og-image.png by _build/og_image.py -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OG image</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=block">
+  <style>
+    :root {
+      --bg: #1C2230;
+      --bg-raised: #222A3A;
+      --text: #F3EFE6;
+      --text-muted: #B4B6BC;
+      --text-faint: #8C92A0;
+      --accent: #E0533F;
+      --accent-text: #F07562;
+      --line: rgba(243, 239, 230, 0.14);
+      --line-strong: rgba(243, 239, 230, 0.28);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--bg); }
+    body {
+      position: relative;
+      color: var(--text);
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .frame {
+      position: absolute;
+      inset: 24px;
+      border: 1.5px solid var(--line-strong);
+      border-radius: 22px;
+    }
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .mono {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .corner {
+      position: absolute;
+      top: 62px;
+      font-size: 18px;
+      letter-spacing: 0.3em;
+      color: var(--text-faint);
+    }
+    .corner.yes { left: 74px; }
+    .corner.no { right: 74px; }
+    .content {
+      position: absolute;
+      left: 74px;
+      top: 138px;
+      width: 640px;
+    }
+    .kicker { font-size: 18px; color: var(--accent-text); }
+    h1 {
+      margin-top: 18px;
+      font-size: 104px;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+    .rule { width: 64px; height: 4px; background: var(--accent); margin: 30px 0 22px; }
+    .role {
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      max-width: 600px;
+    }
+    .mascot {
+      position: absolute;
+      right: 92px;
+      top: 118px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: var(--bg-raised);
+      border: 1.5px solid var(--line-strong);
+      display: grid;
+      place-items: center;
+    }
+    .mascot::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      border: 1px dashed var(--line-strong);
+    }
+    .mascot img { position: relative; z-index: 1; width: 64%; filter: drop-shadow(0 10px 0 rgba(0, 0, 0, 0.18)); }
+    .alphabet {
+      position: absolute;
+      left: 74px;
+      right: 74px;
+      bottom: 58px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      color: rgba(243, 239, 230, 0.3);
+    }
+    .alphabet b { font-weight: 500; color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="frame"></div>
+  <span class="corner yes mono">YES</span>
+  <span class="corner no mono">NO</span>
+
+  <div class="content">
+    <p class="kicker mono">Ouija · Genova</p>
+    <h1>Simone<br>Menestrina</h1>
+    <div class="rule"></div>
+    <p class="role">Full Stack Developer and AI Integration Specialist</p>
+  </div>
+
+  <div class="mascot"><img src="../assets/ouija.png" alt=""></div>
+
+  <div class="alphabet mono" id="abc"></div>
+  <script>
+    document.getElementById("abc").innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(function (c) {
+      return "OUIJA".indexOf(c) > -1 ? "<b>" + c + "</b>" : "<span>" + c + "</span>";
+    }).join("");
+  </script>
+</body>
+</html>

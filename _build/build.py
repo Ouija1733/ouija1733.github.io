@@ -125,6 +125,7 @@ T["en"] = dict(
     contact_title="Get in touch.",
     new_tab="(opens in a new tab)",
     goodbye="GOODBYE",
+    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, next to the Ouija mascot.",
     board_title="Ouija board with the alphabet, the numbers, YES, NO and GOODBYE",
 )
 
@@ -202,6 +203,7 @@ T["it"] = dict(
     contact_title="Scrivimi.",
     new_tab="(si apre in una nuova scheda)",
     goodbye="ARRIVEDERCI",
+    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, accanto alla mascotte Ouija.",
     board_title="Tavola Ouija con l’alfabeto, i numeri, SÌ, NO e ARRIVEDERCI",
 )
 
@@ -279,6 +281,7 @@ T["fr"] = dict(
     contact_title="Me contacter.",
     new_tab="(s’ouvre dans un nouvel onglet)",
     goodbye="AU REVOIR",
+    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, à côté de la mascotte Ouija.",
     board_title="Planche Ouija avec l’alphabet, les chiffres, OUI, NON et AU REVOIR",
 )
 
@@ -535,13 +538,15 @@ def page(lang):
   <meta property="og:title" content="{html.escape(t["og_title"])}">
   <meta property="og:description" content="{html.escape(t["desc"])}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="{SITE}assets/ouija.png">
-  <meta property="og:image:width" content="377">
-  <meta property="og:image:height" content="543">
-  <meta property="og:image:alt" content="{html.escape(t["mascot_alt"])}">
+  <meta property="og:image" content="{SITE}assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{html.escape(t["og_image_alt"])}">
   <meta property="og:locale" content="{LOCALE[lang]}">
 {og_alt}
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="{html.escape(t["og_image_alt"])}">
 
   <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="{up}assets/ouija.png">
