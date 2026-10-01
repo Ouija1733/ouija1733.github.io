@@ -1,0 +1,313 @@
+{
+  "_help": "Fai una domanda alla tavola (IT). 'word' è la parola composta sulla tavola: solo A-Z, 0-9 e spazi, niente accenti. 'text' compare sotto la tavola. I temi sono controllati in ordine: vince il primo le cui parole chiave corrispondono. Parole chiave in minuscolo e senza accenti; un * finale accetta qualsiasi desinenza (es. 'gestional*' = gestionale, gestionali); più parole = una frase.",
+  "label": "Fai una domanda alla tavola",
+  "button": "Chiedi",
+  "prefix": "La tavola risponde:",
+  "empty": "Scrivi prima una domanda.",
+  "guided_label": "Oppure scegli una di queste",
+  "guided": [
+    {
+      "topic": "build",
+      "question": "Spirito, sai realizzare un gestionale?"
+    },
+    {
+      "topic": "ai",
+      "question": "Spirito, lavori con l’intelligenza artificiale?"
+    },
+    {
+      "topic": "tech",
+      "question": "In che lingua parli, spirito?"
+    },
+    {
+      "topic": "demon",
+      "question": "Sei un demone?"
+    },
+    {
+      "topic": "where",
+      "question": "Dove sei?"
+    }
+  ],
+  "topics": [
+    {
+      "id": "build",
+      "word": "6 ANNI",
+      "text": "Web app e gestionali su misura sono quello che realizzo da circa 6 anni, soprattutto in Laravel.",
+      "keywords": [
+        "gestional*",
+        "gestion*",
+        "erp",
+        "crm",
+        "web app*",
+        "webapp*",
+        "applicazion* web",
+        "sito",
+        "siti",
+        "sito web",
+        "siti web",
+        "piattaform*",
+        "su misura",
+        "dashboard*",
+        "back office",
+        "backoffice",
+        "portal*",
+        "e commerce",
+        "ecommerce"
+      ]
+    },
+    {
+      "id": "ai",
+      "word": "IA",
+      "text": "Ogni giorno: chatbot, elaborazione di documenti e automazioni collegate a dati reali.",
+      "keywords": [
+        "ia",
+        "l ai",
+        "dell ai",
+        "all ai",
+        "sull ai",
+        "nell ai",
+        "con ai",
+        "con l ai",
+        "di ai",
+        "ai generativ*",
+        "intelligenz* artificial*",
+        "chatbot*",
+        "chat bot*",
+        "gpt*",
+        "chatgpt",
+        "openai",
+        "claude",
+        "anthropic",
+        "llm*",
+        "ocr",
+        "machine learning",
+        "automazion*",
+        "automatizz*",
+        "automatic*",
+        "agent*",
+        "bot",
+        "prompt*",
+        "rag"
+      ]
+    },
+    {
+      "id": "upgrade",
+      "word": "FIX",
+      "text": "Ho aggiornato una grande piattaforma da Laravel 8 a 12, e lavoro volentieri su codice esistente.",
+      "keywords": [
+        "aggiorn*",
+        "upgrad*",
+        "migra*",
+        "manutenzion*",
+        "manutener*",
+        "esistent*",
+        "legacy",
+        "vecchi*",
+        "refactor*",
+        "rifar*",
+        "riprender*",
+        "assistenza",
+        "supporto"
+      ]
+    },
+    {
+      "id": "bug",
+      "word": "FIX",
+      "text": "Solo quelli che sto per correggere.",
+      "keywords": [
+        "bug*",
+        "errore",
+        "errori",
+        "rott*",
+        "crash*",
+        "guast*",
+        "sistemar*",
+        "correg*",
+        "fix*",
+        "debug*",
+        "problem*",
+        "malfunzion*"
+      ]
+    },
+    {
+      "id": "tech",
+      "word": "LARAVEL",
+      "text": "PHP e Laravel fluentemente, più JavaScript, Node.js, Python e Docker. E italiano e inglese, per i vivi.",
+      "keywords": [
+        "laravel",
+        "php",
+        "javascript",
+        "js",
+        "typescript",
+        "ts",
+        "node*",
+        "python",
+        "docker",
+        "mysql",
+        "sql",
+        "stack*",
+        "tecnologi*",
+        "linguagg*",
+        "lingua",
+        "lingue",
+        "parli",
+        "framework*",
+        "strumenti",
+        "backend",
+        "frontend",
+        "full stack",
+        "fullstack",
+        "database",
+        "db",
+        "programmar*",
+        "programmazion*",
+        "programmator*",
+        "programmi in"
+      ]
+    },
+    {
+      "id": "demon",
+      "word": "CODE",
+      "text": "Un demone del codice.",
+      "keywords": [
+        "demon*",
+        "daemon*",
+        "diavol*",
+        "satan*",
+        "fantasm*",
+        "spirit*",
+        "possedut*",
+        "malign*",
+        "infestat*",
+        "anima",
+        "anime",
+        "morto",
+        "morti",
+        "strega",
+        "streghe",
+        "evocat*"
+      ]
+    },
+    {
+      "id": "where",
+      "word": "GENOVA",
+      "text": "A Genova. Ma posso lavorare anche da remoto.",
+      "keywords": [
+        "dove",
+        "citta",
+        "sede",
+        "abiti",
+        "vivi",
+        "remot*",
+        "smart working",
+        "genova",
+        "italia",
+        "zona",
+        "trasfert*",
+        "in presenza",
+        "ufficio"
+      ]
+    },
+    {
+      "id": "apps",
+      "word": "APP",
+      "text": "App desktop con Electron e app mobile multipiattaforma con Ionic.",
+      "keywords": [
+        "app",
+        "applicazion*",
+        "mobile",
+        "desktop",
+        "electron",
+        "ionic",
+        "android",
+        "ios",
+        "iphone",
+        "smartphone",
+        "telefon*",
+        "cellular*",
+        "tablet"
+      ]
+    },
+    {
+      "id": "price",
+      "word": "DIPENDE",
+      "text": "Dipende dal progetto. Scrivimi un’email e ti darò una stima chiara.",
+      "keywords": [
+        "prezz*",
+        "cost*",
+        "tariff*",
+        "budget",
+        "preventiv*",
+        "stima",
+        "quanto",
+        "pagament*",
+        "pagare",
+        "paghi",
+        "soldi",
+        "euro",
+        "economic*",
+        "caro",
+        "cari",
+        "tempi",
+        "tempo",
+        "tempistic*",
+        "scadenz*",
+        "quando",
+        "ore",
+        "giorni",
+        "settiman*",
+        "mesi",
+        "durata",
+        "veloce*"
+      ]
+    },
+    {
+      "id": "contact",
+      "word": "CIAO",
+      "text": "Scrivimi un’email: i contatti sono in fondo alla pagina.",
+      "keywords": [
+        "contatt*",
+        "email",
+        "e mail",
+        "mail",
+        "scriver*",
+        "scrivo",
+        "scrivert*",
+        "linkedin",
+        "github",
+        "chiamar*",
+        "parlar*",
+        "sentirc*",
+        "assum*",
+        "collabor*",
+        "lavorare insieme"
+      ]
+    },
+    {
+      "id": "lanterna",
+      "word": "LANTERNA",
+      "text": "Il mio assistente personale in Laravel, ancora in sviluppo. Il nome viene dal faro di Genova.",
+      "keywords": [
+        "lanterna",
+        "assistente",
+        "progetto personale",
+        "progetti personali",
+        "faro"
+      ]
+    },
+    {
+      "id": "coffee",
+      "word": "CAFFE",
+      "text": "Sempre.",
+      "keywords": [
+        "caff*",
+        "espresso",
+        "cappuccin*",
+        "moka"
+      ]
+    }
+  ],
+  "fallback": {
+    "word": "CHIEDI ANCORA",
+    "text": "Gli spiriti non hanno capito. Prova una delle domande qui sotto."
+  }
+}

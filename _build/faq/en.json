@@ -1,0 +1,302 @@
+{
+  "_help": "Ask the board (EN). 'word' is spelled on the board: only A-Z, 0-9 and spaces, no accents. 'text' appears under the board. Topics are checked in order: the first one whose keywords match wins. Keywords are lowercase without accents; a trailing * matches any ending (e.g. 'bug*' = bug, bugs, buggy); several words = a phrase.",
+  "label": "Ask the board a question",
+  "button": "Ask",
+  "prefix": "The board says:",
+  "empty": "Type a question first.",
+  "guided_label": "Or ask one of these",
+  "guided": [
+    {
+      "topic": "build",
+      "question": "Spirit, can you build a management system?"
+    },
+    {
+      "topic": "ai",
+      "question": "Spirit, do you work with AI?"
+    },
+    {
+      "topic": "tech",
+      "question": "What language do you speak, spirit?"
+    },
+    {
+      "topic": "demon",
+      "question": "Are you a demon?"
+    },
+    {
+      "topic": "where",
+      "question": "Where are you?"
+    }
+  ],
+  "topics": [
+    {
+      "id": "build",
+      "word": "6 YEARS",
+      "text": "Custom web apps and management systems are what I’ve built for about 6 years, mostly in Laravel.",
+      "keywords": [
+        "management system*",
+        "management software",
+        "management platform*",
+        "gestional*",
+        "erp",
+        "crm",
+        "web app*",
+        "webapp*",
+        "web application*",
+        "website*",
+        "web site*",
+        "site",
+        "sites",
+        "web platform*",
+        "platform*",
+        "custom software",
+        "dashboard*",
+        "back office",
+        "backoffice",
+        "portal*",
+        "e commerce",
+        "ecommerce"
+      ]
+    },
+    {
+      "id": "ai",
+      "word": "AI",
+      "text": "Every day: AI chatbots, document processing and automations connected to real data.",
+      "keywords": [
+        "ai",
+        "a i",
+        "artificial intelligence",
+        "chatbot*",
+        "chat bot*",
+        "gpt*",
+        "chatgpt",
+        "openai",
+        "claude",
+        "anthropic",
+        "llm*",
+        "ocr",
+        "machine learning",
+        "automat*",
+        "agent*",
+        "bot",
+        "bots",
+        "prompt*",
+        "rag"
+      ]
+    },
+    {
+      "id": "upgrade",
+      "word": "FIX",
+      "text": "I’ve upgraded a large platform from Laravel 8 to 12, and I’m happy to work on existing code.",
+      "keywords": [
+        "upgrad*",
+        "updat*",
+        "migrat*",
+        "maintenan*",
+        "maintain*",
+        "legacy",
+        "existing",
+        "refactor*",
+        "old code",
+        "old project*",
+        "old site*",
+        "take over",
+        "takeover",
+        "support"
+      ]
+    },
+    {
+      "id": "bug",
+      "word": "FIX",
+      "text": "Only the ones I’m about to fix.",
+      "keywords": [
+        "bug*",
+        "error*",
+        "broken",
+        "crash*",
+        "fix*",
+        "debug*",
+        "issue*",
+        "glitch*"
+      ]
+    },
+    {
+      "id": "tech",
+      "word": "LARAVEL",
+      "text": "Fluent PHP and Laravel, plus JavaScript, Node.js, Python and Docker. And Italian and English, for the living.",
+      "keywords": [
+        "laravel",
+        "php",
+        "javascript",
+        "js",
+        "typescript",
+        "ts",
+        "node*",
+        "python",
+        "docker",
+        "mysql",
+        "sql",
+        "stack*",
+        "tech*",
+        "language*",
+        "speak*",
+        "framework*",
+        "programming",
+        "tools",
+        "backend",
+        "frontend",
+        "full stack",
+        "fullstack",
+        "database*",
+        "db"
+      ]
+    },
+    {
+      "id": "demon",
+      "word": "CODE",
+      "text": "A code daemon.",
+      "keywords": [
+        "demon*",
+        "daemon*",
+        "devil*",
+        "satan*",
+        "ghost*",
+        "spirit*",
+        "evil",
+        "possess*",
+        "haunt*",
+        "soul*",
+        "dead",
+        "witch*"
+      ]
+    },
+    {
+      "id": "where",
+      "word": "GENOVA",
+      "text": "In Genova, Italy. But I can work remotely too.",
+      "keywords": [
+        "where",
+        "city",
+        "located",
+        "location",
+        "based",
+        "remote*",
+        "genova",
+        "genoa",
+        "italy",
+        "italian",
+        "country",
+        "live",
+        "on site",
+        "onsite",
+        "relocat*"
+      ]
+    },
+    {
+      "id": "apps",
+      "word": "APP",
+      "text": "Desktop apps with Electron and cross-platform mobile apps with Ionic.",
+      "keywords": [
+        "app",
+        "apps",
+        "application*",
+        "mobile",
+        "desktop",
+        "electron",
+        "ionic",
+        "android",
+        "ios",
+        "iphone",
+        "smartphone",
+        "phone*",
+        "tablet*"
+      ]
+    },
+    {
+      "id": "price",
+      "word": "DEPENDS",
+      "text": "It depends on the project. Send me an email and I’ll give you a clear estimate.",
+      "keywords": [
+        "price*",
+        "pricing",
+        "cost*",
+        "rate",
+        "rates",
+        "budget*",
+        "quote*",
+        "estimat*",
+        "how much",
+        "fee*",
+        "money",
+        "pay*",
+        "charge*",
+        "expensive",
+        "cheap",
+        "timeline*",
+        "deadline*",
+        "how long",
+        "how fast",
+        "when",
+        "time",
+        "hour*",
+        "day",
+        "days",
+        "week*",
+        "month*"
+      ]
+    },
+    {
+      "id": "contact",
+      "word": "HELLO",
+      "text": "Drop me an email: the contacts are at the bottom of the page.",
+      "keywords": [
+        "contact*",
+        "email*",
+        "e mail",
+        "mail",
+        "reach",
+        "linkedin",
+        "github",
+        "hire",
+        "hiring",
+        "talk",
+        "call",
+        "write",
+        "message",
+        "get in touch",
+        "touch",
+        "collaborat*",
+        "work together",
+        "work with you"
+      ]
+    },
+    {
+      "id": "lanterna",
+      "word": "LANTERNA",
+      "text": "My personal assistant in Laravel, still in progress. Its name comes from Genova’s lighthouse.",
+      "keywords": [
+        "lanterna",
+        "lantern*",
+        "assistant",
+        "personal project*",
+        "side project*",
+        "lighthouse"
+      ]
+    },
+    {
+      "id": "coffee",
+      "word": "COFFEE",
+      "text": "Always.",
+      "keywords": [
+        "coffee*",
+        "espresso*",
+        "cappuccino*",
+        "caffeine",
+        "latte"
+      ]
+    }
+  ],
+  "fallback": {
+    "word": "ASK AGAIN",
+    "text": "The spirits didn’t understand. Try one of the questions below."
+  }
+}
