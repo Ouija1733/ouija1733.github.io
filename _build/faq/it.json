@@ -1,11 +1,19 @@
 {
-  "_help": "Fai una domanda alla tavola (IT). 'word' è la parola composta sulla tavola: solo A-Z, 0-9 e spazi, niente accenti. 'text' compare sotto la tavola. I temi sono controllati in ordine: vince il primo le cui parole chiave corrispondono. Parole chiave in minuscolo e senza accenti; un * finale accetta qualsiasi desinenza (es. 'gestional*' = gestionale, gestionali); più parole = una frase.",
+  "_help": "Fai una domanda alla tavola (IT). 'word' è la parola composta sulla tavola: solo A-Z, 0-9 e spazi, niente accenti. 'text' compare sotto la tavola. I temi sono controllati in ordine: vince il primo le cui parole chiave corrispondono. Parole chiave in minuscolo e senza accenti; un * finale accetta qualsiasi desinenza (es. 'gestional*' = gestionale, gestionali); più parole = una frase. Una 'word' che è esattamente YES, NO o GOODBYE va in quel punto della tavola. 'text_no_cv' (facoltativo) sostituisce 'text' finché non c'è un PDF del CV in assets/cv/. Il tema 'who' mostra anche la mascotte.",
   "label": "Fai una domanda alla tavola",
   "button": "Chiedi",
   "prefix": "La tavola risponde:",
   "empty": "Scrivi prima una domanda.",
   "guided_label": "Oppure scegli una di queste",
   "guided": [
+    {
+      "topic": "relocate",
+      "question": "Spirito, ti trasferisci in Lussemburgo?"
+    },
+    {
+      "topic": "cv",
+      "question": "Spirito, dov’è il tuo CV?"
+    },
     {
       "topic": "build",
       "question": "Spirito, sai realizzare un gestionale?"
@@ -15,19 +23,116 @@
       "question": "Spirito, lavori con l’intelligenza artificiale?"
     },
     {
-      "topic": "tech",
-      "question": "In che lingua parli, spirito?"
-    },
-    {
       "topic": "demon",
       "question": "Sei un demone?"
-    },
-    {
-      "topic": "where",
-      "question": "Dove sei?"
     }
   ],
   "topics": [
+    {
+      "id": "job",
+      "word": "FULL TIME",
+      "text": "Un ruolo full time in ambito tech: software engineer, sviluppatore, full-stack o IT, preferibilmente vicino a quello che già faccio.",
+      "keywords": [
+        "cerchi",
+        "cosa cerchi",
+        "lavoro",
+        "impiego",
+        "ruolo",
+        "ruoli",
+        "posizion*",
+        "opportunit*",
+        "full time",
+        "tempo pieno",
+        "part time",
+        "carriera",
+        "assum*",
+        "candidat*",
+        "offert* di lavoro",
+        "recruit*"
+      ]
+    },
+    {
+      "id": "relocate",
+      "word": "YES",
+      "text": "Sì: mi sto trasferendo in Lussemburgo, ed è proprio per questo che cerco lavoro lì.",
+      "keywords": [
+        "lussemburgo",
+        "luxembourg*",
+        "lux",
+        "trasferir*",
+        "trasferiment*",
+        "trasferisc*",
+        "spostar*",
+        "estero",
+        "frontalier*",
+        "confine",
+        "relocat*"
+      ]
+    },
+    {
+      "id": "cv",
+      "word": "CV",
+      "text": "In cima alla pagina, accanto a Salva il contatto.",
+      "keywords": [
+        "cv",
+        "curriculum*",
+        "resume*"
+      ],
+      "text_no_cv": "Stampa questa pagina: diventa un CV pulito. Oppure scrivimi e ti mando il PDF."
+    },
+    {
+      "id": "availability",
+      "word": "1 MESE",
+      "text": "Circa un mese dall’offerta, per gestire trasferimento e pratiche burocratiche.",
+      "keywords": [
+        "disponibil*",
+        "preavviso",
+        "inizi*",
+        "cominci*",
+        "entrare",
+        "quanto presto",
+        "quando puoi",
+        "quando potresti"
+      ]
+    },
+    {
+      "id": "french",
+      "word": "A1",
+      "text": "Un pochino: francese A1, per ora. Italiano madrelingua e inglese C1.",
+      "keywords": [
+        "francese",
+        "french",
+        "francais"
+      ]
+    },
+    {
+      "id": "english",
+      "word": "C1",
+      "text": "Sì, C1. L’italiano è la mia lingua madre, il francese è A1.",
+      "keywords": [
+        "inglese",
+        "english"
+      ]
+    },
+    {
+      "id": "fundtracker",
+      "word": "STUDIO",
+      "text": "FundTracker: un progetto di studio per imparare .NET e React (ASP.NET Core, EF Core, SQL Server). Ancora in corso.",
+      "keywords": [
+        "fundtracker",
+        "fund tracker",
+        "net",
+        "dotnet",
+        "asp net",
+        "c sharp",
+        "csharp",
+        "react",
+        "entity framework",
+        "sql server",
+        "impar*",
+        "studi*"
+      ]
+    },
     {
       "id": "build",
       "word": "6 ANNI",
@@ -165,6 +270,22 @@
       ]
     },
     {
+      "id": "who",
+      "word": "OUIJA",
+      "text": "Ouija: la firma e l’alter ego di Simone. Eccolo, senza tavola.",
+      "keywords": [
+        "chi sei",
+        "chi e",
+        "come ti chiami",
+        "nome",
+        "ouija",
+        "mascott*",
+        "te stesso",
+        "presentati",
+        "teschi*"
+      ]
+    },
+    {
       "id": "demon",
       "word": "CODE",
       "text": "Un demone del codice.",
@@ -190,7 +311,7 @@
     {
       "id": "where",
       "word": "GENOVA",
-      "text": "A Genova. Ma posso lavorare anche da remoto.",
+      "text": "A Genova, per ora: mi sto trasferendo in Lussemburgo.",
       "keywords": [
         "dove",
         "citta",
@@ -263,7 +384,7 @@
     {
       "id": "contact",
       "word": "CIAO",
-      "text": "Scrivimi un’email: i contatti sono in fondo alla pagina.",
+      "text": "Email, telefono o LinkedIn: trovi tutto in fondo alla pagina. Oppure tocca Salva il contatto.",
       "keywords": [
         "contatt*",
         "email",
@@ -277,7 +398,6 @@
         "chiamar*",
         "parlar*",
         "sentirc*",
-        "assum*",
         "collabor*",
         "lavorare insieme"
       ]

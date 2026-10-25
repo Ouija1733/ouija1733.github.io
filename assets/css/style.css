@@ -695,6 +695,17 @@ main > section {
 
 .ask-answer strong { color: var(--candle); font-weight: 400; }
 
+.ask-mascot {
+  width: 96px;
+  margin-top: 14px;
+  animation: summon 0.9s var(--ease-out) both;
+}
+
+@keyframes summon {
+  from { opacity: 0; transform: translateY(12px) scale(0.92); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
 .ask-guided { display: grid; gap: 10px; margin-top: 8px; }
 .ask-guided-label { color: var(--candle-dim); }
 
@@ -733,6 +744,57 @@ main > section {
 
 @media (max-width: 420px) {
   .ask-button { padding: 12px 14px; }
+}
+
+/* ---------- Recruiter snapshot: readable in ten seconds ---------- */
+
+.snapshot {
+  padding: clamp(40px, 6vw, 64px) 0;
+}
+
+.snapshot-title { color: var(--gold-text); margin-bottom: 20px; }
+
+.snapshot-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0 24px;
+  margin: 0;
+}
+
+.snapshot-list div {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 2px solid var(--gold);
+}
+
+.snapshot-list dt { color: var(--ink-soft); }
+.snapshot-list dd { margin: 0; font-size: 0.9375rem; line-height: 1.5; }
+
+.snapshot-note {
+  margin-top: 24px;
+  max-width: 70ch;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 960px) {
+  .snapshot-list { grid-template-columns: 1fr; }
+
+  .snapshot-list div {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .snapshot-list div:first-child { border-top: 2px solid var(--gold); }
+  .snapshot-list dt { padding-top: 3px; }
+}
+
+@media (max-width: 420px) {
+  .snapshot-list div { grid-template-columns: 1fr; gap: 2px; }
 }
 
 /* ---------- About ---------- */
@@ -836,7 +898,13 @@ main > section {
   .service:nth-child(2n)::before { left: 0; }
 }
 
-/* ---------- Lanterna ---------- */
+/* ---------- Personal projects: Lanterna and FundTracker ---------- */
+
+.features { display: grid; gap: 20px; }
+
+/* A learning project: dashed accent, so it never reads as client work */
+.feature--learning { border-left-style: dashed; }
+.feature--learning .feature-title { font-size: clamp(1.875rem, 4.5vw, 2.75rem); }
 
 .feature {
   position: relative;
@@ -1096,8 +1164,38 @@ main > section {
 .stack li:hover::before { transform: scaleX(1); }
 .stack li:hover .icon { transform: translateY(-2px) scale(1.08); }
 
+/* Currently learning: kept apart from the stack used at work */
+.learning {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px 28px;
+  margin-top: 28px;
+  padding: 20px 24px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.learning h3 { color: var(--ink-soft); font-weight: 400; grid-row: span 2; }
+
+.learning ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.learning li { display: flex; align-items: center; gap: 10px; }
+.learning .icon { color: var(--gold); }
+.learning .stack-name { font-size: 1.125rem; }
+.learning p { color: var(--ink-soft); font-size: 0.9375rem; }
+
 @media (max-width: 860px) {
   .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .learning { grid-template-columns: 1fr; }
+  .learning h3 { grid-row: auto; }
 }
 
 @media (max-width: 420px) {

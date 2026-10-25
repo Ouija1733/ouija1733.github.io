@@ -183,6 +183,16 @@
       text.textContent = answer.text;
       out.textContent = "";
       out.append(prefix, " ", text);
+      // Easter egg: asked who it is, the board shows the mascot.
+      if (answer.id === "who") {
+        var img = document.createElement("img");
+        img.className = "ask-mascot";
+        img.src = form.getAttribute("data-mascot");
+        img.alt = form.getAttribute("data-mascot-alt");
+        img.width = 377;
+        img.height = 543;
+        out.append(img);
+      }
     }
 
     var asked = 0;

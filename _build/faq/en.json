@@ -1,11 +1,19 @@
 {
-  "_help": "Ask the board (EN). 'word' is spelled on the board: only A-Z, 0-9 and spaces, no accents. 'text' appears under the board. Topics are checked in order: the first one whose keywords match wins. Keywords are lowercase without accents; a trailing * matches any ending (e.g. 'bug*' = bug, bugs, buggy); several words = a phrase.",
+  "_help": "Ask the board (EN). 'word' is spelled on the board: only A-Z, 0-9 and spaces, no accents. 'text' appears under the board. Topics are checked in order: the first one whose keywords match wins. Keywords are lowercase without accents; a trailing * matches any ending (e.g. 'bug*' = bug, bugs, buggy); several words = a phrase. A 'word' that is exactly YES, NO or GOODBYE goes to that spot on the board. 'text_no_cv' (optional) replaces 'text' while there is no CV PDF in assets/cv/. The topic 'who' also shows the mascot.",
   "label": "Ask the board a question",
   "button": "Ask",
   "prefix": "The board says:",
   "empty": "Type a question first.",
   "guided_label": "Or ask one of these",
   "guided": [
+    {
+      "topic": "relocate",
+      "question": "Spirit, can you move to Luxembourg?"
+    },
+    {
+      "topic": "cv",
+      "question": "Spirit, where is your CV?"
+    },
     {
       "topic": "build",
       "question": "Spirit, can you build a management system?"
@@ -15,19 +23,119 @@
       "question": "Spirit, do you work with AI?"
     },
     {
-      "topic": "tech",
-      "question": "What language do you speak, spirit?"
-    },
-    {
       "topic": "demon",
       "question": "Are you a demon?"
-    },
-    {
-      "topic": "where",
-      "question": "Where are you?"
     }
   ],
   "topics": [
+    {
+      "id": "job",
+      "word": "FULL TIME",
+      "text": "A full-time role in tech: software engineer, developer, full-stack or IT, ideally close to what I already do.",
+      "keywords": [
+        "looking for",
+        "seeking",
+        "search*",
+        "job*",
+        "role*",
+        "position*",
+        "opportunit*",
+        "vacanc*",
+        "full time",
+        "fulltime",
+        "part time",
+        "career",
+        "open to",
+        "hire",
+        "hiring",
+        "employ*",
+        "recruit*"
+      ]
+    },
+    {
+      "id": "relocate",
+      "word": "YES",
+      "text": "Yes: I’m relocating to Luxembourg, and that’s exactly why I’m looking for work there.",
+      "keywords": [
+        "luxembourg*",
+        "luxemburg*",
+        "lux",
+        "relocat*",
+        "move",
+        "moving",
+        "move to",
+        "abroad",
+        "border",
+        "cross border",
+        "frontalier*"
+      ]
+    },
+    {
+      "id": "cv",
+      "word": "CV",
+      "text": "Right at the top of the page, next to Save contact.",
+      "keywords": [
+        "cv",
+        "cvs",
+        "resume*",
+        "curriculum*"
+      ],
+      "text_no_cv": "Print this page: it turns into a clean CV. Or write to me and I’ll send you the PDF."
+    },
+    {
+      "id": "availability",
+      "word": "1 MONTH",
+      "text": "About one month from the offer, to handle the move and the paperwork.",
+      "keywords": [
+        "availab*",
+        "notice",
+        "notice period",
+        "start*",
+        "join*",
+        "begin*",
+        "how soon",
+        "when can you"
+      ]
+    },
+    {
+      "id": "french",
+      "word": "A1",
+      "text": "Un peu! French A1 for now. Italian is my native language and my English is C1.",
+      "keywords": [
+        "french",
+        "francais",
+        "parlez vous",
+        "parles tu"
+      ]
+    },
+    {
+      "id": "english",
+      "word": "C1",
+      "text": "Yes, C1. Italian is my native language, and my French is A1.",
+      "keywords": [
+        "english"
+      ]
+    },
+    {
+      "id": "fundtracker",
+      "word": "LEARNING",
+      "text": "FundTracker: a study project to learn .NET and React (ASP.NET Core, EF Core, SQL Server). Still in progress.",
+      "keywords": [
+        "fundtracker",
+        "fund tracker",
+        "net",
+        "dotnet",
+        "asp net",
+        "c sharp",
+        "csharp",
+        "react",
+        "entity framework",
+        "sql server",
+        "learn*",
+        "study*",
+        "studying"
+      ]
+    },
     {
       "id": "build",
       "word": "6 YEARS",
@@ -151,6 +259,24 @@
       ]
     },
     {
+      "id": "who",
+      "word": "OUIJA",
+      "text": "Ouija: Simone’s signature and alter ego. Here it is, without the board.",
+      "keywords": [
+        "who are you",
+        "who is",
+        "who r u",
+        "your name",
+        "name",
+        "ouija",
+        "mascot*",
+        "yourself",
+        "about you",
+        "introduce",
+        "skull*"
+      ]
+    },
+    {
       "id": "demon",
       "word": "CODE",
       "text": "A code daemon.",
@@ -172,7 +298,7 @@
     {
       "id": "where",
       "word": "GENOVA",
-      "text": "In Genova, Italy. But I can work remotely too.",
+      "text": "In Genova, Italy, for now: I’m relocating to Luxembourg.",
       "keywords": [
         "where",
         "city",
@@ -187,8 +313,7 @@
         "country",
         "live",
         "on site",
-        "onsite",
-        "relocat*"
+        "onsite"
       ]
     },
     {
@@ -247,7 +372,7 @@
     {
       "id": "contact",
       "word": "HELLO",
-      "text": "Drop me an email: the contacts are at the bottom of the page.",
+      "text": "Email, phone or LinkedIn: everything is at the bottom of the page. Or tap Save contact.",
       "keywords": [
         "contact*",
         "email*",
@@ -256,8 +381,6 @@
         "reach",
         "linkedin",
         "github",
-        "hire",
-        "hiring",
         "talk",
         "call",
         "write",

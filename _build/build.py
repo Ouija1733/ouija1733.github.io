@@ -59,6 +59,9 @@ ICONS = {
     "external": '<path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/>',
     "phone": '<path d="M5 3.5h3.5l1.75 4.5-2.25 1.5a11 11 0 0 0 6.5 6.5l1.5-2.25 4.5 1.75V19a1.5 1.5 0 0 1-1.5 1.5A16.5 16.5 0 0 1 3.5 5 1.5 1.5 0 0 1 5 3.5z"/>',
     "download": '<path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2"/>',
+    "mobile": '<rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M10.5 18.5h3"/>',
+    "monitor": '<rect x="2.5" y="4" width="19" height="13" rx="1.5"/><path d="M8.5 20.5h7M12 17v3.5"/>',
+    "atom": '<circle cx="12" cy="12" r="1.5"/><ellipse cx="12" cy="12" rx="9.5" ry="3.75"/><ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.5" ry="3.75" transform="rotate(120 12 12)"/>',
     "card": '<rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8.5" cy="11" r="2.25"/><path d="M5.25 16a3.4 3.4 0 0 1 6.5 0"/><path d="M14.5 10h4M14.5 13.5h3"/>',
 }
 
@@ -75,14 +78,32 @@ T["en"] = dict(
     og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
     desc="Simone Menestrina, aka Ouija: full-stack developer from Genova, relocating to Luxembourg, with about 6 years of experience in custom web platforms, management systems, desktop and mobile apps and AI integrations.",
     skip="Skip to content", menu="Menu", nav_label="Main", lang_label="Language",
-    nav=["About", "What I do", "Lanterna", "Case studies", "Stack", "Experience", "Contact"],
+    nav=["About", "What I do", "Projects", "Case studies", "Stack", "Experience", "Contact"],
     yes="YES", no="NO",
     kicker="Genova · Relocating to Luxembourg",
     role="Full-Stack Developer",
     bridge="About 6 years building web platforms, management systems, desktop and mobile apps and AI integrations. I sign my work as <strong>Ouija</strong>: like the board, a bridge between people’s ideas and technology.",
+    snapshot_title="At a glance",
+    snapshot=[
+        ("Looking for", "A full-time role in tech: software engineer, developer, full-stack or IT, ideally close to my skills."),
+        ("Where", "Based in Genova, relocating to Luxembourg."),
+        ("Experience", "About 6 years: Laravel, JavaScript/TypeScript, Node.js, Python, Docker, Ionic, Electron, AI integrations."),
+        ("Languages", "Italian (native), English (C1), French (A1)."),
+        ("Availability", "About one month from the offer, to handle the move and the paperwork."),
+    ],
+    snapshot_note="",
+    projects_title="Things I build for myself.",
+    ft_sub="Learning project: .NET and React",
+    ft=[
+        ("What it is", "A study project to learn .NET and React, started while preparing for a job interview."),
+        ("Stack", "ASP.NET Core, Entity Framework Core, SQL Server, React."),
+        ("Status", "In progress. A learning project, not professional experience."),
+    ],
+    learning_h="Currently learning",
+    learning_note='Through <a href="#projects">FundTracker</a>, a study project: not professional experience yet.',
     cta_cv="Download CV", cta_contact="Save contact", phone_label="Phone",
     mascot_alt="Ouija, Simone’s mascot: a cartoon character with a dark beret, a white skull-like face, a long braid and fingerless gloves.",
-    labels=["About", "What I do", "Personal project", "Case studies", "Stack", "Experience and education", "Contact"],
+    labels=["About", "What I do", "Personal projects", "Case studies", "Stack", "Experience and education", "Contact"],
     about_title="Turning what clients need into software that works.",
     profile="<strong>I turn what clients need into software that works.</strong> For about 6 years I have built custom web platforms, management systems, desktop and mobile apps and AI integrations at a software house in Genova, handling projects end to end, from scoping to support after launch.",
     facts=[("Based in", "Genova, Italy"), ("Experience", "About 6 years"), ("Signature", "Ouija")],
@@ -132,7 +153,8 @@ T["en"] = dict(
          "Staff log hours from their phone; admin reports are generated automatically."),
     ],
     stack_title="Tools I work with.",
-    stack_kind={"lang": "Language", "fw": "Framework", "rt": "Runtime", "infra": "Containers", "db": "Database", "ai": "AI API"},
+    stack_kind={"lang": "Language", "fw": "Framework", "rt": "Runtime", "infra": "Containers", "db": "Database", "ai": "AI API",
+                "mobile": "Mobile", "desktop": "Desktop", "vcs": "Version control"},
     exp_title="Experience and education.",
     exp_h="Experience", edu_h="Education", lang_h="Languages",
     job_title="Full-Stack Developer", job_where="Software house, Genova", job_meta="About 6 years",
@@ -141,7 +163,7 @@ T["en"] = dict(
     other=["About one year in Java on a point-of-sale and cash-management system for shops and restaurants.",
            "Client relationships, project scoping and B2B sales materials."],
     edu_title="High school diploma in computer science", edu_where="I.I.S. Gastaldi-Abba, Genova",
-    langs=[("Italian", "Native"), ("English", "C1")],
+    langs=[("Italian", "Native"), ("English", "C1"), ("French", "A1")],
     contact_title="Get in touch.",
     new_tab="(opens in a new tab)",
     goodbye="GOODBYE",
@@ -154,14 +176,32 @@ T["it"] = dict(
     og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
     desc="Simone Menestrina, in arte Ouija: sviluppatore full-stack di Genova, in trasferimento in Lussemburgo, con circa 6 anni di esperienza in piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale.",
     skip="Vai al contenuto", menu="Menu", nav_label="Principale", lang_label="Lingua",
-    nav=["Profilo", "Cosa faccio", "Lanterna", "Casi studio", "Stack", "Esperienza", "Contatti"],
+    nav=["Profilo", "Cosa faccio", "Progetti", "Casi studio", "Stack", "Esperienza", "Contatti"],
     yes="SÌ", no="NO",
     kicker="Genova · In trasferimento in Lussemburgo",
     role="Full-Stack Developer",
     bridge="Da circa 6 anni realizzo piattaforme web, gestionali, app desktop e mobile e integrazioni IA. Firmo i miei lavori come <strong>Ouija</strong>: come la tavola, faccio da ponte tra le idee delle persone e la tecnologia.",
+    snapshot_title="In breve",
+    snapshot=[
+        ("Cerco", "Un ruolo full time in ambito tech: software engineer, sviluppatore, full-stack o IT, preferibilmente vicino alle mie competenze."),
+        ("Dove", "Base a Genova, in trasferimento in Lussemburgo."),
+        ("Esperienza", "Circa 6 anni: Laravel, JavaScript/TypeScript, Node.js, Python, Docker, Ionic, Electron, integrazioni IA."),
+        ("Lingue", "Italiano (madrelingua), inglese (C1), francese (A1)."),
+        ("Disponibilità", "Circa un mese dall’offerta, per gestire trasferimento e pratiche burocratiche."),
+    ],
+    snapshot_note="",
+    projects_title="Cose che costruisco per me.",
+    ft_sub="Progetto di studio: .NET e React",
+    ft=[
+        ("Cos’è", "Un progetto di studio per imparare .NET e React, nato durante la preparazione a un colloquio."),
+        ("Stack", "ASP.NET Core, Entity Framework Core, SQL Server, React."),
+        ("Stato", "In corso. Un progetto di apprendimento, non esperienza professionale."),
+    ],
+    learning_h="Sto imparando",
+    learning_note='Con <a href="#projects">FundTracker</a>, un progetto di studio: non ancora esperienza professionale.',
     cta_cv="Scarica il CV", cta_contact="Salva il contatto", phone_label="Telefono",
     mascot_alt="Ouija, la mascotte di Simone: un personaggio a fumetti con un basco scuro, un volto bianco simile a un teschio, una lunga treccia e guanti senza dita.",
-    labels=["Profilo", "Cosa faccio", "Progetto personale", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
+    labels=["Profilo", "Cosa faccio", "Progetti personali", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
     about_title="Trasformare le esigenze dei clienti in software che funziona.",
     profile="<strong>Trasformo le esigenze dei clienti in software che funziona.</strong> Da circa 6 anni realizzo piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale presso una software house di Genova, seguendo i progetti dall’inizio alla fine: dall’analisi all’assistenza dopo il rilascio.",
     facts=[("Sede", "Genova, Italia"), ("Esperienza", "Circa 6 anni"), ("Firma", "Ouija")],
@@ -211,7 +251,8 @@ T["it"] = dict(
          "Il personale registra le ore dal telefono; i report per l’amministrazione vengono generati automaticamente."),
     ],
     stack_title="Gli strumenti con cui lavoro.",
-    stack_kind={"lang": "Linguaggio", "fw": "Framework", "rt": "Runtime", "infra": "Container", "db": "Database", "ai": "API IA"},
+    stack_kind={"lang": "Linguaggio", "fw": "Framework", "rt": "Runtime", "infra": "Container", "db": "Database", "ai": "API IA",
+                "mobile": "Mobile", "desktop": "Desktop", "vcs": "Versionamento"},
     exp_title="Esperienza e formazione.",
     exp_h="Esperienza", edu_h="Formazione", lang_h="Lingue",
     job_title="Full-Stack Developer", job_where="Software house, Genova", job_meta="Circa 6 anni",
@@ -220,7 +261,7 @@ T["it"] = dict(
     other=["Circa un anno in Java su un sistema di punto vendita e gestione cassa per negozi e ristoranti.",
            "Gestione dei rapporti con i clienti, analisi dei progetti e materiali commerciali B2B."],
     edu_title="Diploma di scuola superiore in informatica", edu_where="I.I.S. Gastaldi-Abba, Genova",
-    langs=[("Italiano", "Madrelingua"), ("Inglese", "C1")],
+    langs=[("Italiano", "Madrelingua"), ("Inglese", "C1"), ("Francese", "A1")],
     contact_title="Scrivimi.",
     new_tab="(si apre in una nuova scheda)",
     goodbye="ARRIVEDERCI",
@@ -233,14 +274,32 @@ T["fr"] = dict(
     og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
     desc=f"Simone Menestrina, alias Ouija{NB}: développeur full-stack originaire de Gênes, en cours d’installation au Luxembourg, avec environ 6 ans d’expérience en plateformes web sur mesure, logiciels de gestion, applications desktop et mobiles et intégrations d’IA.",
     skip="Aller au contenu", menu="Menu", nav_label="Principale", lang_label="Langue",
-    nav=["Profil", "Ce que je fais", "Lanterna", "Études de cas", "Stack", "Parcours", "Contact"],
+    nav=["Profil", "Ce que je fais", "Projets", "Études de cas", "Stack", "Parcours", "Contact"],
     yes="OUI", no="NON",
     kicker="Gênes · En cours d’installation au Luxembourg",
     role="Full-Stack Developer",
     bridge=f"Depuis environ 6 ans, je développe des plateformes web, des logiciels de gestion, des applications desktop et mobiles et des intégrations d’IA. Je signe mon travail sous le nom d’<strong>Ouija</strong>{NB}: comme la planche, je fais le lien entre les idées des gens et la technologie.",
+    snapshot_title="En bref",
+    snapshot=[
+        ("Je recherche", f"Un poste à temps plein dans la tech{NB}: software engineer, développeur, full-stack ou IT, idéalement proche de mes compétences."),
+        ("Où", "Basé à Gênes, en cours d’installation au Luxembourg."),
+        ("Expérience", f"Environ 6 ans{NB}: Laravel, JavaScript/TypeScript, Node.js, Python, Docker, Ionic, Electron, intégrations d’IA."),
+        ("Langues", "Italien (langue maternelle), anglais (C1), français (A1)."),
+        ("Disponibilité", "Environ un mois après l’offre, le temps du déménagement et des démarches administratives."),
+    ],
+    snapshot_note=f"Ce site est traduit en français pour votre confort{NB}: je travaille en italien et en anglais, et j’apprends le français.",
+    projects_title="Ce que je construis pour moi.",
+    ft_sub=f"Projet d’étude{NB}: .NET et React",
+    ft=[
+        ("Ce que c’est", "Un projet d’étude pour apprendre .NET et React, commencé en préparant un entretien d’embauche."),
+        ("Stack", "ASP.NET Core, Entity Framework Core, SQL Server, React."),
+        ("Statut", "En cours. Un projet d’apprentissage, pas une expérience professionnelle."),
+    ],
+    learning_h="En apprentissage",
+    learning_note=f'Avec <a href="#projects">FundTracker</a>, un projet d’étude{NB}: pas encore une expérience professionnelle.',
     cta_cv="Télécharger le CV", cta_contact="Enregistrer le contact", phone_label="Téléphone",
     mascot_alt=f"Ouija, la mascotte de Simone{NB}: un personnage de bande dessinée avec un béret sombre, un visage blanc en forme de crâne, une longue tresse et des mitaines.",
-    labels=["Profil", "Ce que je fais", "Projet personnel", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
+    labels=["Profil", "Ce que je fais", "Projets personnels", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
     about_title="Transformer les besoins des clients en logiciels qui fonctionnent.",
     profile="<strong>Je transforme les besoins de mes clients en logiciels qui fonctionnent.</strong> Depuis environ 6 ans, je développe des plateformes web sur mesure, des logiciels de gestion, des applications desktop et mobiles et des intégrations d’IA au sein d’une société de développement logiciel à Gênes, en suivant les projets de bout en bout, du cadrage au support après la mise en production.",
     facts=[("Basé à", "Gênes, Italie"), ("Expérience", "Environ 6 ans"), ("Signature", "Ouija")],
@@ -290,7 +349,8 @@ T["fr"] = dict(
          f"Le personnel saisit ses heures depuis son téléphone{NB}; les rapports administratifs sont générés automatiquement."),
     ],
     stack_title="Les outils avec lesquels je travaille.",
-    stack_kind={"lang": "Langage", "fw": "Framework", "rt": "Runtime", "infra": "Conteneurs", "db": "Base de données", "ai": "API d’IA"},
+    stack_kind={"lang": "Langage", "fw": "Framework", "rt": "Runtime", "infra": "Conteneurs", "db": "Base de données", "ai": "API d’IA",
+                "mobile": "Mobile", "desktop": "Desktop", "vcs": "Gestion de versions"},
     exp_title="Expérience et formation.",
     exp_h="Expérience", edu_h="Formation", lang_h="Langues",
     job_title="Full-Stack Developer", job_where="Société de développement logiciel, Gênes", job_meta="Environ 6 ans",
@@ -299,7 +359,7 @@ T["fr"] = dict(
     other=["Environ un an en Java sur un système de point de vente et de gestion de caisse pour commerces et restaurants.",
            "Relation client, cadrage de projets et supports commerciaux B2B."],
     edu_title="Diplôme d’études secondaires en informatique", edu_where="I.I.S. Gastaldi-Abba, Gênes",
-    langs=[("Italien", "Langue maternelle"), ("Anglais", "C1")],
+    langs=[("Italien", "Langue maternelle"), ("Anglais", "C1"), ("Français", "A1")],
     contact_title="Me contacter.",
     new_tab="(s’ouvre dans un nouvel onglet)",
     goodbye="AU REVOIR",
@@ -310,19 +370,25 @@ T["fr"] = dict(
 SERVICE_ICONS = ["web", "ai", "devices", "upgrade"]
 CASE_ICONS = ["columns", "bag", "package", "key", "clock"]  # same order as T[*]["cases"]
 STACK = [
-    ("PHP / Laravel", "fw", "code"), ("JavaScript / TypeScript", "lang", "braces"), ("Node.js", "rt", "hexagon"),
-    ("Python", "lang", "terminal"), ("Docker", "infra", "layers"), ("MySQL", "db", "database"),
-    ("OpenAI API", "ai", "chip"), ("Claude API", "ai", "chat"),
+    ("PHP", "lang", "code"), ("Laravel", "fw", "layers"), ("JavaScript / TypeScript", "lang", "braces"),
+    ("Node.js", "rt", "hexagon"), ("Python", "lang", "terminal"), ("Docker", "infra", "package"),
+    ("MySQL", "db", "database"), ("Ionic", "mobile", "mobile"), ("Electron", "desktop", "monitor"),
+    ("Git", "vcs", "branch"), ("OpenAI API", "ai", "chip"), ("Claude API", "ai", "chat"),
 ]
+LEARNING = [(".NET / ASP.NET Core", "blocks"), ("React", "atom")]  # FundTracker: learning, not professional experience
 
 # ---------- "Ask the board" FAQ: one editable file per language in _build/faq/ ----------
 BOARD_CHARS = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ")
 
 
-def load_faq(lang):
+def load_faq(lang, has_cv):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "faq", f"{lang}.json")
     with open(path, encoding="utf-8") as f:
         faq = json.load(f)
+    for item in faq["topics"]:
+        alt = item.pop("text_no_cv", None)
+        if alt and not has_cv:
+            item["text"] = alt
     ids = {t["id"] for t in faq["topics"]}
     for item in faq["topics"] + [faq["fallback"]]:
         bad = set(item["word"]) - BOARD_CHARS
@@ -441,7 +507,7 @@ def board_svg(t):
           </svg>'''
 
 
-IDS = ["about", "services", "lanterna", "case-studies", "stack", "experience", "contact"]
+IDS = ["about", "services", "projects", "case-studies", "stack", "experience", "contact"]
 
 
 def rv(i=0, step=70):
@@ -482,7 +548,8 @@ def page(lang):
         return lab + ("\n          " + title_html if title_html else "")
 
 
-    faq = load_faq(lang)
+    cv = cv_path(lang)
+    faq = load_faq(lang, bool(cv))
     faq_data = {
         "topics": [{"id": x["id"], "word": x["word"], "text": x["text"], "keywords": x["keywords"]} for x in faq["topics"]],
         "fallback": faq["fallback"],
@@ -504,8 +571,16 @@ def page(lang):
           </li>''' for i, (h, p) in enumerate(t["services"])
     )
 
+    snapshot = "\n".join(
+        f'          <div {rv(i, 60)}><dt class="caps">{k}</dt><dd>{v}</dd></div>' for i, (k, v) in enumerate(t["snapshot"])
+    )
+    snapshot_note = f'\n        <p class="snapshot-note" {rv()}>{t["snapshot_note"]}</p>' if t["snapshot_note"] else ""
+
     lanterna = "\n".join(
-        f'            <div><dt class="caps">{k}</dt><dd>{v}</dd></div>' for k, v in t["lanterna"]
+        f'              <div><dt class="caps">{k}</dt><dd>{v}</dd></div>' for k, v in t["lanterna"]
+    )
+    fundtracker = "\n".join(
+        f'              <div><dt class="caps">{k}</dt><dd>{v}</dd></div>' for k, v in t["ft"]
     )
 
     lp, lb, lr = t["case_labels"]
@@ -535,6 +610,10 @@ def page(lang):
         f'          <li {rv(i % 4, 60)}>{icon(ic)}<span class="stack-name">{name}</span><span class="caps">{t["stack_kind"][k]}</span></li>'
         for i, (name, k, ic) in enumerate(STACK)
     )
+    learning = "\n".join(
+        f'            <li>{icon(ic)}<span class="stack-name">{name}</span></li>'
+        for name, ic in LEARNING
+    )
 
     other = "".join(f"<li>{o}</li>" for o in t["other"])
     langs = "\n".join(
@@ -558,7 +637,6 @@ def page(lang):
     )
 
     # "Download CV" + "Save contact": in the hero, in the contacts and in the Moovijob banner
-    cv = cv_path(lang)
     def actions(cls="actions"):
         btns = []
         if cv:
@@ -660,7 +738,7 @@ def page(lang):
 
           <p class="ask-answer" id="ask-answer" aria-live="polite"></p>
 
-          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}">
+          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}" data-mascot="{up}assets/ouija.png" data-mascot-alt="{html.escape(t["mascot_alt"])}">
             <label class="ask-label caps" for="ask-q">{faq["label"]}</label>
             <div class="ask-row">
               <input class="ask-input" id="ask-q" name="q" type="text" maxlength="140" spellcheck="false">
@@ -674,6 +752,15 @@ def page(lang):
             </div>
           </form>
         </div>
+      </div>
+    </section>
+
+    <section class="snapshot" id="snapshot" aria-labelledby="snapshot-title">
+      <div class="wrap">
+        <h2 class="snapshot-title caps" id="snapshot-title" {rv()}>{t["snapshot_title"]}</h2>
+        <dl class="snapshot-list">
+{snapshot}
+        </dl>{snapshot_note}
       </div>
     </section>
 
@@ -708,21 +795,33 @@ def page(lang):
       </div>
     </section>
 
-    <section class="section" id="lanterna" aria-labelledby="lanterna-title">
+    <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
         <div class="section-head">
-          {head(2)}
+          {head(2, f'<h2 class="section-title" id="projects-title" {rv(1)}>{t["projects_title"]}</h2>')}
         </div>
-        <article class="feature" {rv(1)}>
-          <div>
-            <h2 class="feature-title" id="lanterna-title">Lanterna</h2>
-            <p class="feature-sub">{t["lanterna_sub"]}</p>
-            <p class="status caps">{t["lanterna_status"]}</p>
-          </div>
-          <dl class="feature-list">
+        <div class="features">
+          <article class="feature" {rv(1)}>
+            <div>
+              <h3 class="feature-title">Lanterna</h3>
+              <p class="feature-sub">{t["lanterna_sub"]}</p>
+              <p class="status caps">{t["lanterna_status"]}</p>
+            </div>
+            <dl class="feature-list">
 {lanterna}
-          </dl>
-        </article>
+            </dl>
+          </article>
+          <article class="feature feature--learning" {rv(1)}>
+            <div>
+              <h3 class="feature-title">FundTracker</h3>
+              <p class="feature-sub">{t["ft_sub"]}</p>
+              <p class="status caps">{t["lanterna_status"]}</p>
+            </div>
+            <dl class="feature-list">
+{fundtracker}
+            </dl>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -746,6 +845,13 @@ def page(lang):
         <ul class="stack">
 {stack}
         </ul>
+        <div class="learning" {rv()}>
+          <h3 class="caps">{t["learning_h"]}</h3>
+          <ul>
+{learning}
+          </ul>
+          <p>{t["learning_note"]}</p>
+        </div>
       </div>
     </section>
 
