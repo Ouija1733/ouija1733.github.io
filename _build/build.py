@@ -11,6 +11,7 @@ LINKEDIN = "https://www.linkedin.com/in/simone-menestrina/"
 GITHUB = "https://github.com/Ouija1733"
 PHONE = "+39 351 900 9233"
 VCARD = "assets/simone-menestrina.vcf"
+MOOVIJOB = ("2026-11-10", "2026-12-15")  # banner window, inclusive, in the visitor's local time
 
 # CV per language, relative to the site root. A button only appears once its PDF exists;
 # a language without its own CV falls back to the English one.
@@ -102,6 +103,8 @@ T["en"] = dict(
     learning_h="Currently learning",
     learning_note='Through <a href="#projects">FundTracker</a>, a study project: not professional experience yet.',
     cta_cv="Download CV", cta_contact="Save contact", phone_label="Phone",
+    moovi="Met me at Moovijob Week? Nice to see you again.", close="Close",
+    card_label="Business card: flip it over", card_hint="Tap the card to flip it",
     mascot_alt="Ouija, Simone’s mascot: a cartoon character with a dark beret, a white skull-like face, a long braid and fingerless gloves.",
     labels=["About", "What I do", "Personal projects", "Case studies", "Stack", "Experience and education", "Contact"],
     about_title="Turning what clients need into software that works.",
@@ -200,6 +203,8 @@ T["it"] = dict(
     learning_h="Sto imparando",
     learning_note='Con <a href="#projects">FundTracker</a>, un progetto di studio: non ancora esperienza professionale.',
     cta_cv="Scarica il CV", cta_contact="Salva il contatto", phone_label="Telefono",
+    moovi="Ci siamo conosciuti alla Moovijob Week? Che piacere rivederti.", close="Chiudi",
+    card_label="Biglietto da visita: giralo", card_hint="Tocca il biglietto per girarlo",
     mascot_alt="Ouija, la mascotte di Simone: un personaggio a fumetti con un basco scuro, un volto bianco simile a un teschio, una lunga treccia e guanti senza dita.",
     labels=["Profilo", "Cosa faccio", "Progetti personali", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
     about_title="Trasformare le esigenze dei clienti in software che funziona.",
@@ -298,6 +303,8 @@ T["fr"] = dict(
     learning_h="En apprentissage",
     learning_note=f'Avec <a href="#projects">FundTracker</a>, un projet d’étude{NB}: pas encore une expérience professionnelle.',
     cta_cv="Télécharger le CV", cta_contact="Enregistrer le contact", phone_label="Téléphone",
+    moovi=f"On s’est rencontrés à la Moovijob Week{NB}? Ravi de vous revoir.", close="Fermer",
+    card_label=f"Carte de visite{NB}: la retourner", card_hint="Touchez la carte pour la retourner",
     mascot_alt=f"Ouija, la mascotte de Simone{NB}: un personnage de bande dessinée avec un béret sombre, un visage blanc en forme de crâne, une longue tresse et des mitaines.",
     labels=["Profil", "Ce que je fais", "Projets personnels", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
     about_title="Transformer les besoins des clients en logiciels qui fonctionnent.",
@@ -507,6 +514,43 @@ def board_svg(t):
           </svg>'''
 
 
+def card_back_svg(t):
+    """The back of the business card, small and static, for the flip card in Contact."""
+    letters = []
+
+    def arc(chars, radius, half_width, size):
+        right = math.degrees(math.acos(half_width / radius))
+        step = (180 - 2 * right) / (len(chars) - 1)
+        for i, c in enumerate(chars):
+            th = 180 - right - i * step
+            x = ARC_CX + radius * math.cos(math.radians(th))
+            y = ARC_CY - radius * math.sin(math.radians(th))
+            letters.append(f'<text x="{x:.1f}" y="{y:.1f}" font-size="{size}" transform="rotate({90 - th:.2f} {x:.1f} {y:.1f})">{c}</text>')
+
+    arc("ABCDEFGHIJKLM", 580, 292, 46)
+    arc("NOPQRSTUVWXYZ", 488, 256, 42)
+    nums = "".join(f'<text x="{170 + i * (420 / 9):.1f}" y="410" font-size="32">{c}</text>' for i, c in enumerate("1234567890"))
+    half = len(t["goodbye"]) * 26 * 0.98 / 2 + 18
+    gl, gr = 380 - half, 380 + half
+    rays = "".join(
+        f'<path d="M{62 + 13 * math.cos(a):.1f} {66 + 13 * math.sin(a):.1f}L{62 + 19 * math.cos(a):.1f} {66 + 19 * math.sin(a):.1f}"/>'
+        for a in [k * math.pi / 4 + math.pi / 8 for k in range(8)]
+    )
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="2.6"/>' for x, y in PLANCHETTE_DOTS)
+    rx, ry = REST
+    return (f'<svg class="cb" viewBox="0 0 {BOARD_W} {BOARD_H}" aria-hidden="true" focusable="false">'
+            f'<rect class="cb-line cb-outer" x="4" y="4" width="{BOARD_W - 8}" height="{BOARD_H - 8}" rx="28"/>'
+            f'<rect class="cb-line" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="17"/>'
+            f'<circle class="cb-fill" cx="62" cy="66" r="9"/><g class="cb-line">{rays}</g>'
+            f'<path class="cb-fill" d="M706 50A16 16 0 1 0 706 82A17 17 0 0 1 706 50Z"/>'
+            f'<path class="cb-line" d="M{gl - 120:.0f} 470H{gl:.0f}M{gr:.0f} 470H{gr + 120:.0f}"/>'
+            f'<g class="cb-text"><text x="380" y="66" font-size="24" letter-spacing="7">OUIJA1733</text>'
+            f'<text class="cb-bold" x="136" y="66" font-size="30">{t["yes"]}</text><text class="cb-bold" x="624" y="66" font-size="30">{t["no"]}</text>'
+            f'{"".join(letters)}{nums}<text x="380" y="470" font-size="26" letter-spacing="6">{t["goodbye"]}</text></g>'
+            f'<g transform="translate({rx} {ry})"><path class="cb-line cb-pl" d="{PLANCHETTE_PATH}"/>'
+            f'<circle class="cb-line" r="{PLANCHETTE_WINDOW}"/><g class="cb-fill">{dots}</g></g></svg>')
+
+
 IDS = ["about", "services", "projects", "case-studies", "stack", "experience", "contact"]
 
 
@@ -692,6 +736,14 @@ def page(lang):
 <body>
   <a class="skip-link" href="#main">{t["skip"]}</a>
 
+  <aside class="moovi" id="moovi" aria-label="Moovijob Week" data-from="{MOOVIJOB[0]}" data-to="{MOOVIJOB[1]}" hidden>
+    <div class="wrap moovi-inner">
+      <p class="moovi-text">{t["moovi"]}</p>
+      {actions("actions moovi-actions")}
+      <button class="moovi-close" type="button" aria-label="{t["close"]}"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </aside>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top">{planchette_svg("brand-mark")}Simone Menestrina</a>
@@ -723,6 +775,7 @@ def page(lang):
             <h1 class="hero-name" id="hero-name" {rv(1, 90)}>Simone<br>Menestrina</h1>
             <p class="hero-role caps" {rv(2, 90)}>{t["role"]}</p>
             <p class="hero-bridge" {rv(3, 90)}>{t["bridge"]}</p>
+            <p class="print-contacts">{EMAIL} · {PHONE} · linkedin.com/in/simone-menestrina · github.com/Ouija1733 · {SITE.split("//")[1].rstrip("/")}</p>
             {actions("actions hero-actions")}
           </div>
 
@@ -893,10 +946,29 @@ def page(lang):
         <div class="section-head">
           {head(6, f'<h2 class="section-title" id="contact-title" {rv(1)}>{t["contact_title"]}</h2>')}
         </div>
-        <ul class="contact-list">
+        <div class="contact-grid">
+          <div>
+            <ul class="contact-list">
 {contact_items}
-        </ul>
-        {actions("actions contact-actions")}
+            </ul>
+            {actions("actions contact-actions")}
+          </div>
+
+          <figure class="bizcard-wrap" {rv(2)}>
+            <button class="bizcard" type="button" aria-pressed="false" aria-label="{t["card_label"]}">
+              <span class="bizcard-inner">
+                <span class="bizcard-face bizcard-front" aria-hidden="true">
+                  <span class="bc-mark">{planchette_svg("bc-planchette")}</span>
+                  <span class="bc-name">Simone Menestrina</span>
+                  <span class="bc-role">Full-Stack Developer</span>
+                  <span class="bc-info">{EMAIL}<br>linkedin.com/in/simone-menestrina<br>github.com/Ouija1733<br>{PHONE}</span>
+                </span>
+                <span class="bizcard-face bizcard-back" aria-hidden="true">{card_back_svg(t)}</span>
+              </span>
+            </button>
+            <figcaption class="bizcard-hint caps">{t["card_hint"]}</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>

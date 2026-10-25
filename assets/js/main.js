@@ -1,6 +1,7 @@
 /* Simone Menestrina — Ouija portfolio
-   Shared script: mobile menu, active section, language links that keep the section,
-   reveal on scroll and the Ouija board (planchette, idle wandering, "Ask the board"). */
+   Shared script: mobile menu, Moovijob banner, flip card, active section, language links
+   that keep the section, reveal on scroll and the Ouija board (planchette, idle wandering,
+   "Ask the board"). */
 (function () {
   "use strict";
 
@@ -43,6 +44,33 @@
       if (mq.matches) setMenu(false);
     });
   }
+
+  /* ---------- Moovijob Week banner ----------
+     The QR on the card points at the bare root, so the date decides: shown from data-from to
+     data-to (inclusive, local time) until closed. ?moovijob=1 shows it any day, for testing. */
+  var moovi = document.getElementById("moovi");
+  if (moovi) {
+    var now = new Date();
+    var from = new Date(moovi.getAttribute("data-from") + "T00:00:00");
+    var to = new Date(moovi.getAttribute("data-to") + "T23:59:59");
+    var closed = false;
+    try { closed = localStorage.getItem("moovi-closed") === "1"; } catch (e) { /* storage blocked */ }
+    if (/[?&]moovijob=1(&|$)/.test(location.search) || (now >= from && now <= to && !closed)) moovi.hidden = false;
+
+    moovi.querySelector(".moovi-close").addEventListener("click", function () {
+      moovi.hidden = true;
+      try { localStorage.setItem("moovi-closed", "1"); } catch (e) { /* storage blocked */ }
+      var brand = document.querySelector(".brand");
+      if (brand) brand.focus();
+    });
+  }
+
+  /* ---------- The business card flips over (instantly with reduced motion, via the CSS) ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".bizcard"), function (card) {
+    card.addEventListener("click", function () {
+      card.setAttribute("aria-pressed", String(card.getAttribute("aria-pressed") !== "true"));
+    });
+  });
 
   /* ---------- Language links follow the current section ---------- */
   var langLinks = Array.prototype.slice.call(document.querySelectorAll(".lang-switch a[hreflang]"));
