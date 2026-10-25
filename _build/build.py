@@ -539,19 +539,18 @@ def card_back_svg(t):
     dots = "".join(f'<circle cx="{x}" cy="{y}" r="2.6"/>' for x, y in PLANCHETTE_DOTS)
     rx, ry = REST
 
-    # Drawn at the printed card's size (1368x896, as in the PDF): the gold frame sits 100 units in
-    # from every edge. The board content is scaled to the frame's height and centred; the sun/YES
-    # and NO/moon pairs stay tucked into the frame's corners, as on the card.
-    cw, ch, m = 1368, 896, 100
-    fw, fh = cw - 2 * m, ch - 2 * m
-    s = fh / (BOARD_H - 8)
-    ty = m - 4 * s
-    left = f"translate({m - 4 * s:.1f} {ty:.1f}) scale({s:.4f})"
-    right = f"translate({m + fw - (BOARD_W - 4) * s:.1f} {ty:.1f}) scale({s:.4f})"
+    # Drawn at the printed card's size (1368x896, as in the PDF), with the outer gold border on the
+    # card's own edge: its corners match the face's border-radius in the CSS (44 units). The board
+    # content is scaled to the card's height and centred; sun/YES and NO/moon stay in the corners.
+    cw, ch, e = 1368, 896, 3          # e: half the outer stroke, so the line sits just inside the edge
+    s = (ch - 2 * e) / (BOARD_H - 8)
+    ty = e - 4 * s
+    left = f"translate({e - 4 * s:.1f} {ty:.1f}) scale({s:.4f})"
+    right = f"translate({cw - e - (BOARD_W - 4) * s:.1f} {ty:.1f}) scale({s:.4f})"
     centre = f"translate({cw / 2 - BOARD_W / 2 * s:.1f} {ty:.1f}) scale({s:.4f})"
     return (f'<svg class="cb" viewBox="0 0 {cw} {ch}" aria-hidden="true" focusable="false">'
-            f'<rect class="cb-line" style="stroke-width:5" x="{m}" y="{m}" width="{fw}" height="{fh}" rx="44"/>'
-            f'<rect class="cb-line" style="stroke-width:2.5" x="{m + 18}" y="{m + 18}" width="{fw - 36}" height="{fh - 36}" rx="28"/>'
+            f'<rect class="cb-line" style="stroke-width:{2 * e}" x="{e}" y="{e}" width="{cw - 2 * e}" height="{ch - 2 * e}" rx="{44 - e}"/>'
+            f'<rect class="cb-line" style="stroke-width:2.5" x="24" y="24" width="{cw - 48}" height="{ch - 48}" rx="24"/>'
             f'<g transform="{left}"><circle class="cb-fill" cx="62" cy="66" r="9"/><g class="cb-line">{rays}</g>'
             f'<text class="cb-text cb-bold" x="136" y="66" font-size="30">{t["yes"]}</text></g>'
             f'<g transform="{right}"><path class="cb-fill" d="M705.1 50A16 16 0 1 0 720.8 72A13.5 13.5 0 1 1 705.1 50Z"/>'
