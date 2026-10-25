@@ -538,17 +538,30 @@ def card_back_svg(t):
     )
     dots = "".join(f'<circle cx="{x}" cy="{y}" r="2.6"/>' for x, y in PLANCHETTE_DOTS)
     rx, ry = REST
-    return (f'<svg class="cb" viewBox="0 0 {BOARD_W} {BOARD_H}" aria-hidden="true" focusable="false">'
-            f'<rect class="cb-line cb-outer" x="4" y="4" width="{BOARD_W - 8}" height="{BOARD_H - 8}" rx="28"/>'
-            f'<rect class="cb-line" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="17"/>'
-            f'<circle class="cb-fill" cx="62" cy="66" r="9"/><g class="cb-line">{rays}</g>'
-            f'<path class="cb-fill" d="M705.1 50A16 16 0 1 0 720.8 72A13.5 13.5 0 1 1 705.1 50Z"/>'
+
+    # Drawn at the printed card's size (1368x896, as in the PDF): the gold frame sits 100 units in
+    # from every edge. The board content is scaled to the frame's height and centred; the sun/YES
+    # and NO/moon pairs stay tucked into the frame's corners, as on the card.
+    cw, ch, m = 1368, 896, 100
+    fw, fh = cw - 2 * m, ch - 2 * m
+    s = fh / (BOARD_H - 8)
+    ty = m - 4 * s
+    left = f"translate({m - 4 * s:.1f} {ty:.1f}) scale({s:.4f})"
+    right = f"translate({m + fw - (BOARD_W - 4) * s:.1f} {ty:.1f}) scale({s:.4f})"
+    centre = f"translate({cw / 2 - BOARD_W / 2 * s:.1f} {ty:.1f}) scale({s:.4f})"
+    return (f'<svg class="cb" viewBox="0 0 {cw} {ch}" aria-hidden="true" focusable="false">'
+            f'<rect class="cb-line" style="stroke-width:5" x="{m}" y="{m}" width="{fw}" height="{fh}" rx="44"/>'
+            f'<rect class="cb-line" style="stroke-width:2.5" x="{m + 18}" y="{m + 18}" width="{fw - 36}" height="{fh - 36}" rx="28"/>'
+            f'<g transform="{left}"><circle class="cb-fill" cx="62" cy="66" r="9"/><g class="cb-line">{rays}</g>'
+            f'<text class="cb-text cb-bold" x="136" y="66" font-size="30">{t["yes"]}</text></g>'
+            f'<g transform="{right}"><path class="cb-fill" d="M705.1 50A16 16 0 1 0 720.8 72A13.5 13.5 0 1 1 705.1 50Z"/>'
+            f'<text class="cb-text cb-bold" x="624" y="66" font-size="30">{t["no"]}</text></g>'
+            f'<g transform="{centre}">'
             f'<path class="cb-line" d="M{gl - 120:.0f} 470H{gl:.0f}M{gr:.0f} 470H{gr + 120:.0f}"/>'
             f'<g class="cb-text"><text x="380" y="66" font-size="24" letter-spacing="7">OUIJA1733</text>'
-            f'<text class="cb-bold" x="136" y="66" font-size="30">{t["yes"]}</text><text class="cb-bold" x="624" y="66" font-size="30">{t["no"]}</text>'
             f'{"".join(letters)}{nums}<text x="380" y="470" font-size="26" letter-spacing="6">{t["goodbye"]}</text></g>'
             f'<g transform="translate({rx} {ry})"><path class="cb-line cb-pl" d="{PLANCHETTE_PATH}"/>'
-            f'<circle class="cb-line" r="{PLANCHETTE_WINDOW}"/><g class="cb-fill">{dots}</g></g></svg>')
+            f'<circle class="cb-line" r="{PLANCHETTE_WINDOW}"/><g class="cb-fill">{dots}</g></g></g></svg>')
 
 
 IDS = ["about", "services", "projects", "case-studies", "stack", "experience", "contact"]
