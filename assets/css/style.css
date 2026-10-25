@@ -427,9 +427,10 @@ main > section {
 
 /* ---------- Hero ---------- */
 
+/* Spacing and sizes follow the window height too, so short laptop screens get a compact hero */
 .hero {
   position: relative;
-  padding: clamp(40px, 7vw, 88px) 0 clamp(40px, 6vw, 72px);
+  padding: clamp(28px, min(7vw, 8vh), 88px) 0 clamp(32px, min(6vw, 7vh), 72px);
 }
 
 .hero-grid {
@@ -445,7 +446,7 @@ main > section {
 }
 
 .hero-name {
-  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+  font-size: clamp(2.75rem, min(7.5vw, 11vh), 5.25rem);
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1;
@@ -480,7 +481,7 @@ main > section {
 /* The big planchette on the right, like the mark on the front of the card */
 .hero-mark {
   justify-self: center;
-  width: min(100%, 300px);
+  width: min(100%, 300px, 40vh);
   color: var(--gold);
 }
 
@@ -578,36 +579,6 @@ main > section {
   .board { --board-max: calc((100svh - var(--header-h) - 340px) * 760 / 520); }
 }
 
-/* Side by side (desktop, laptop, tablets and phones in landscape): the board takes the full
-   height below the header and the answer and the form sit in a column on its right. */
-@media (min-width: 900px), (min-width: 640px) and (orientation: landscape) {
-  .board-section { padding: 20px 0; }
-
-  .board {
-    --board-max: calc((100vh - var(--header-h) - 40px) * 760 / 520);
-    max-width: none;
-    display: grid;
-    grid-template-columns: minmax(0, min(760px, max(320px, var(--board-max)))) minmax(240px, 340px);
-    grid-template-rows: auto 1fr;
-    justify-content: center;
-    align-items: start;
-    column-gap: clamp(24px, 3.5vw, 48px);
-  }
-
-  /* Top-aligned: if the column on the right runs longer, the board still starts under the header */
-  .board-svg { grid-column: 1; grid-row: 1 / span 2; align-self: start; }
-  .ask-answer { grid-column: 2; grid-row: 1; margin: 0 0 18px; }
-  .ask { grid-column: 2; grid-row: 2; align-self: start; margin: 0; }
-
-  .ask-guided ul { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .ask-chip { padding: 6px 12px; font-size: 0.875rem; }
-}
-
-@supports (height: 100svh) {
-  @media (min-width: 900px), (min-width: 640px) and (orientation: landscape) {
-    .board { --board-max: calc((100svh - var(--header-h) - 40px) * 760 / 520); }
-  }
-}
 
 .board-svg {
   display: block;
@@ -742,12 +713,13 @@ main > section {
    an invitation at rest, "spelling..." while the planchette moves, then the answer. */
 .ask-answer {
   --lines: 5;
+  --plaque-h: calc(var(--lines) * 1.5rem + 1.125rem + 6px + 30px);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-  height: calc(var(--lines) * 1.5rem + 1.125rem + 6px + 30px);
+  height: var(--plaque-h);
   margin: 14px 0 16px;
   padding: 14px 18px;
   overflow: hidden;
@@ -761,7 +733,19 @@ main > section {
 
 html:not(.js) .ask-answer { display: none; }
 
-.ask-idle { color: var(--candle-dim); }
+.ask-idle { color: var(--candle-dim); text-align: center; }
+
+/* A small planchette above the invitation; it breathes while the answer is being spelled */
+.ask-idle::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 33px;
+  margin: 0 auto 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -65 100 111'%3E%3Cg fill='none' stroke='%23A68A4C' stroke-width='4' stroke-linejoin='round'%3E%3Cpath d='M0 -60C17 -45 45 -19 45 8C45 29 35 41 21.5 41C11.5 41 4 36.5 0 31.5C-4 36.5 -11.5 41 -21.5 41C-35 41 -45 29 -45 8C-45 -19 -17 -45 0 -60Z'/%3E%3Ccircle r='17'/%3E%3C/g%3E%3Cg fill='%23A68A4C'%3E%3Ccircle cx='-17' cy='25' r='4'/%3E%3Ccircle cx='0' cy='28' r='4'/%3E%3Ccircle cx='17' cy='25' r='4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.ask-spelling::before { animation: breathe 1.4s ease-in-out infinite; }
 
 /* "The spirits are spelling..." with three dots that breathe while the planchette moves */
 .ask-spelling::after {
@@ -841,6 +825,41 @@ html:not(.js) .ask-answer { display: none; }
 
 @media (max-width: 420px) {
   .ask-button { padding: 12px 14px; }
+}
+
+/* Side by side (desktop, laptop, tablets and phones in landscape): the board takes the full
+   height below the header. On its right, the question box sits level with the board's bottom
+   edge and the answer plaque fills the space above it, so the column is exactly as tall as the
+   board and the plaque's height never depends on the answer. The guided questions run in a
+   row under both. */
+@media (min-width: 900px), (min-width: 640px) and (orientation: landscape) {
+  .board-section { padding: 20px 0 28px; }
+
+  .board {
+    --board-max: calc((100vh - var(--header-h) - 40px) * 760 / 520);
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, min(760px, max(320px, var(--board-max)))) minmax(240px, 340px);
+    grid-template-rows: 1fr auto auto auto;
+    justify-content: center;
+    column-gap: clamp(24px, 3.5vw, 48px);
+  }
+
+  /* The form's parts become grid items of the board */
+  .js .ask { display: contents; }
+
+  /* aspect-ratio lets the grid know the board's height when it sizes the rows */
+  .board-svg { grid-column: 1; grid-row: 1 / span 3; align-self: start; aspect-ratio: 760 / 520; }
+  .ask-answer { grid-column: 2; grid-row: 1; height: auto; min-height: var(--plaque-h); margin: 0 0 16px; }
+  .ask-label { grid-column: 2; grid-row: 2; margin-bottom: 8px; }
+  .ask-row { grid-column: 2; grid-row: 3; align-self: end; }
+  .ask-guided { grid-column: 1 / -1; grid-row: 4; margin-top: 20px; }
+}
+
+@supports (height: 100svh) {
+  @media (min-width: 900px), (min-width: 640px) and (orientation: landscape) {
+    .board { --board-max: calc((100svh - var(--header-h) - 40px) * 760 / 520); }
+  }
 }
 
 /* ---------- Recruiter snapshot: readable in ten seconds ---------- */
