@@ -443,7 +443,7 @@ def page(lang):
     )
 
     def head(n, title_html=""):
-        lab = f'<p class="section-label mono" {rv()}>{n + 1:02d} / {t["labels"][n]}</p>'
+        lab = f'<p class="section-label caps" {rv()}>{n + 1:02d} / {t["labels"][n]}</p>'
         return lab + ("\n          " + title_html if title_html else "")
 
 
@@ -458,19 +458,19 @@ def page(lang):
     )
 
     facts = "\n".join(
-        f'            <div><dt class="mono">{k}</dt><dd>{v}</dd></div>' for k, v in t["facts"]
+        f'            <div><dt class="caps">{k}</dt><dd>{v}</dd></div>' for k, v in t["facts"]
     )
 
     services = "\n".join(
         f'''          <li class="service" {rv(i)}>
-            <div class="service-top">{icon(SERVICE_ICONS[i], "icon icon-lg")}<span class="service-num mono" aria-hidden="true">{i + 1:02d}</span></div>
+            <div class="service-top">{icon(SERVICE_ICONS[i], "icon icon-lg")}<span class="service-num caps" aria-hidden="true">{i + 1:02d}</span></div>
             <h3>{h}</h3>
             <p>{p}</p>
           </li>''' for i, (h, p) in enumerate(t["services"])
     )
 
     lanterna = "\n".join(
-        f'            <div><dt class="mono">{k}</dt><dd>{v}</dd></div>' for k, v in t["lanterna"]
+        f'            <div><dt class="caps">{k}</dt><dd>{v}</dd></div>' for k, v in t["lanterna"]
     )
 
     lp, lb, lr = t["case_labels"]
@@ -484,20 +484,20 @@ def page(lang):
             <div class="case-head">
               <span class="case-icon">{icon(CASE_ICONS[i])}</span>
               <div>
-                <p class="case-sector mono">{sector}</p>
+                <p class="case-sector caps">{sector}</p>
                 <h3>{title}</h3>
               </div>
             </div>
             <dl>
-              <div class="f-problem"><dt class="mono">{icon("alert", "icon icon-xs")}{lp}</dt><dd>{prob}</dd></div>
-              <div class="f-built"><dt class="mono">{icon("blocks", "icon icon-xs")}{lb}</dt><dd>{built}</dd></div>
-              <div class="f-result"><dt class="mono">{icon("check", "icon icon-xs")}{lr}</dt><dd>{res}</dd></div>
+              <div class="f-problem"><dt class="caps">{icon("alert", "icon icon-xs")}{lp}</dt><dd>{prob}</dd></div>
+              <div class="f-built"><dt class="caps">{icon("blocks", "icon icon-xs")}{lb}</dt><dd>{built}</dd></div>
+              <div class="f-result"><dt class="caps">{icon("check", "icon icon-xs")}{lr}</dt><dd>{res}</dd></div>
             </dl>
           </li>''')
     cases = "\n".join(cases)
 
     stack = "\n".join(
-        f'          <li {rv(i % 4, 60)}>{icon(ic)}<span class="stack-name">{name}</span><span class="mono">{t["stack_kind"][k]}</span></li>'
+        f'          <li {rv(i % 4, 60)}>{icon(ic)}<span class="stack-name">{name}</span><span class="caps">{t["stack_kind"][k]}</span></li>'
         for i, (name, k, ic) in enumerate(STACK)
     )
 
@@ -515,7 +515,7 @@ def page(lang):
     contact_items = "\n".join(
         f'          <li {rv(i)}><a href="{href}"'
         + (' target="_blank" rel="me noopener"' if ext else "")
-        + f'><span class="contact-label mono">{icon(ic)}{lab}</span><span class="contact-value">{val}</span>'
+        + f'><span class="contact-label caps">{icon(ic)}{lab}</span><span class="contact-value">{val}</span>'
         + (nt if ext else "")
         + f'{icon("external", "icon contact-arrow")}</a></li>'
         for i, (ic, lab, href, val, ext) in enumerate(contacts)
@@ -529,7 +529,7 @@ def page(lang):
   <title>{t["title"]}</title>
   <meta name="description" content="{html.escape(t["desc"])}">
   <meta name="author" content="Simone Menestrina">
-  <meta name="theme-color" content="#1C2230">
+  <meta name="theme-color" content="#FFF9E9">
   <link rel="canonical" href="{url}">
 {alt_links}
 
@@ -551,9 +551,8 @@ def page(lang):
   <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="{up}assets/ouija.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+  <link rel="preload" href="{up}assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{up}assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{up}assets/css/style.css">
   <script>
     /* Motion is opt-in: only with JS, only without reduced motion, and undone if main.js never runs. */
@@ -597,7 +596,7 @@ def page(lang):
       <div class="wrap">
         <div class="hero-grid">
           <div>
-            <p class="hero-kicker mono" {rv()}>{t["kicker"]}</p>
+            <p class="hero-kicker caps" {rv()}>{t["kicker"]}</p>
             <h1 class="hero-name" id="hero-name" {rv(1, 90)}>Simone<br>Menestrina</h1>
             <p class="hero-role" {rv(2, 90)}>{t["role"]}</p>
             <p class="hero-bridge" {rv(3, 90)}>{t["bridge"]}</p>
@@ -605,7 +604,7 @@ def page(lang):
 
           <figure class="mascot">
             <span class="mascot-float"><img src="{up}assets/ouija.png" width="377" height="543" alt="{html.escape(t["mascot_alt"])}" fetchpriority="high"></span>
-            <figcaption class="mono">Ouija</figcaption>
+            <figcaption class="caps">Ouija</figcaption>
           </figure>
         </div>
 
@@ -615,13 +614,13 @@ def page(lang):
           <p class="ask-answer" id="ask-answer" aria-live="polite"></p>
 
           <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}">
-            <label class="ask-label mono" for="ask-q">{faq["label"]}</label>
+            <label class="ask-label caps" for="ask-q">{faq["label"]}</label>
             <div class="ask-row">
               <input class="ask-input" id="ask-q" name="q" type="text" maxlength="140" spellcheck="false">
               <button class="ask-button" type="submit">{faq["button"]}</button>
             </div>
             <div class="ask-guided" role="group" aria-labelledby="ask-guided-label">
-              <p class="ask-guided-label mono" id="ask-guided-label">{faq["guided_label"]}</p>
+              <p class="ask-guided-label caps" id="ask-guided-label">{faq["guided_label"]}</p>
               <ul>
 {guided}
               </ul>
@@ -665,7 +664,7 @@ def page(lang):
           <div>
             <h2 class="feature-title" id="lanterna-title">Lanterna</h2>
             <p class="feature-sub">{t["lanterna_sub"]}</p>
-            <p class="status mono">{t["lanterna_status"]}</p>
+            <p class="status caps">{t["lanterna_status"]}</p>
           </div>
           <dl class="feature-list">
 {lanterna}
@@ -678,7 +677,7 @@ def page(lang):
       <div class="wrap">
         <div class="section-head">
           {head(3, f'<h2 class="section-title" id="cases-title" {rv(1)}>{t["cases_title"]}</h2>')}
-          <p class="section-note mono" {rv(2)}>{t["cases_note"]}</p>
+          <p class="section-note caps" {rv(2)}>{t["cases_note"]}</p>
         </div>
         <ul class="cases">
 {cases}
@@ -704,10 +703,10 @@ def page(lang):
         </div>
         <div class="exp-grid">
           <div class="exp-col" {rv()}>
-            <h3 class="mono">{t["exp_h"]}</h3>
+            <h3 class="caps">{t["exp_h"]}</h3>
             <div class="entry">
               <h4>{t["job_title"]}</h4>
-              <p class="meta mono">{t["job_where"]} · {t["job_meta"]}</p>
+              <p class="meta caps">{t["job_where"]} · {t["job_meta"]}</p>
               <p>{t["job_desc"]}</p>
             </div>
             <div class="entry">
@@ -716,12 +715,12 @@ def page(lang):
             </div>
           </div>
           <div class="exp-col" {rv(2)}>
-            <h3 class="mono">{t["edu_h"]}</h3>
+            <h3 class="caps">{t["edu_h"]}</h3>
             <div class="entry">
               <h4>{t["edu_title"]}</h4>
-              <p class="meta mono">{t["edu_where"]} · 2021</p>
+              <p class="meta caps">{t["edu_where"]} · 2021</p>
             </div>
-            <h3 class="mono exp-sub">{t["lang_h"]}</h3>
+            <h3 class="caps exp-sub">{t["lang_h"]}</h3>
             <dl class="langs">
 {langs}
             </dl>
@@ -743,7 +742,7 @@ def page(lang):
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-inner mono">
+    <div class="wrap footer-inner caps">
       <span>© Simone Menestrina · Ouija</span>
       <span class="goodbye" aria-hidden="true">{t["goodbye"]}</span>
     </div>
