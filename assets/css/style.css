@@ -567,15 +567,15 @@ main > section {
 
 /* The board, the answer and the question box should all be on screen together, so the
    answer can be read as the planchette finishes spelling it.
-   Stacked (phones in portrait): the board leaves ~300px below it for the answer and the form. */
+   Stacked (phones in portrait): the board leaves ~340px below it for the answer and the form. */
 .board {
-  --board-max: calc((100vh - var(--header-h) - 300px) * 760 / 520);
+  --board-max: calc((100vh - var(--header-h) - 340px) * 760 / 520);
   max-width: min(820px, max(300px, var(--board-max)));
   margin: 0 auto;
 }
 
 @supports (height: 100svh) {
-  .board { --board-max: calc((100svh - var(--header-h) - 300px) * 760 / 520); }
+  .board { --board-max: calc((100svh - var(--header-h) - 340px) * 760 / 520); }
 }
 
 /* Side by side (desktop, laptop, tablets and phones in landscape): the board takes the full
@@ -588,15 +588,15 @@ main > section {
     max-width: none;
     display: grid;
     grid-template-columns: minmax(0, min(760px, max(320px, var(--board-max)))) minmax(240px, 340px);
-    grid-template-rows: auto auto;
+    grid-template-rows: auto 1fr;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     column-gap: clamp(24px, 3.5vw, 48px);
   }
 
   /* Top-aligned: if the column on the right runs longer, the board still starts under the header */
   .board-svg { grid-column: 1; grid-row: 1 / span 2; align-self: start; }
-  .ask-answer { grid-column: 2; grid-row: 1; align-self: end; margin: 0 0 18px; }
+  .ask-answer { grid-column: 2; grid-row: 1; margin: 0 0 18px; }
   .ask { grid-column: 2; grid-row: 2; align-self: start; margin: 0; }
 
   .ask-guided ul { flex-direction: column; align-items: flex-start; gap: 6px; }
@@ -737,31 +737,70 @@ main > section {
 .ask-button:hover { background: transparent; color: var(--candle); }
 .ask-button:active { transform: translateY(1px); }
 
+/* The answer panel: a small plaque in the board's style. Its height is fixed (room for the
+   longest answer in any language) and it is never empty, so nothing below it ever moves:
+   an invitation at rest, "spelling..." while the planchette moves, then the answer. */
 .ask-answer {
-  min-height: 3em;
-  margin: 14px 0 12px;
-  color: var(--candle-dim);
-  font-size: 1.0625rem;
+  --lines: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  height: calc(var(--lines) * 1.5rem + 1.125rem + 6px + 30px);
+  margin: 14px 0 16px;
+  padding: 14px 18px;
+  overflow: hidden;
+  border: 1px solid var(--candle-line);
+  border-left: 2px solid var(--candle-dim);
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--night-raised), var(--night) 85%);
+  font-size: 1rem;
   line-height: 1.5;
+}
+
+html:not(.js) .ask-answer { display: none; }
+
+.ask-idle { color: var(--candle-dim); }
+
+/* "The spirits are spelling..." with three dots that breathe while the planchette moves */
+.ask-spelling::after {
+  content: "...";
+  display: inline-block;
+  margin-left: 2px;
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
 }
 
 .ask-prefix {
   font-size: 0.75rem;
+  line-height: 1.5;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--candle-dim);
 }
 
-.ask-answer strong { color: var(--candle); font-weight: 400; }
+.ask-text { color: var(--candle); }
 
+/* Easter egg: the mascot steps into the corner of the plaque */
 .ask-mascot {
-  width: 96px;
-  margin-top: 14px;
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  width: 64px;
+  transform-origin: 50% 100%;   /* rises from the bottom edge, never past it */
   animation: summon 0.9s var(--ease-out) both;
 }
 
+.ask-answer:has(.ask-mascot) .ask-text,
+.ask-answer:has(.ask-mascot) .ask-prefix { padding-right: 72px; }
+
 @keyframes summon {
-  from { opacity: 0; transform: translateY(12px) scale(0.92); filter: blur(4px); }
+  from { opacity: 0; transform: scale(0.85); filter: blur(4px); }
   to { opacity: 1; transform: none; filter: none; }
 }
 
@@ -798,7 +837,6 @@ main > section {
   /* On phones the board runs edge to edge (minus the gutter) */
   .board-section .wrap { padding: 0 12px; }
   .ask { padding: 0 4px; }
-  .ask-answer { padding: 0 4px; }
 }
 
 @media (max-width: 420px) {

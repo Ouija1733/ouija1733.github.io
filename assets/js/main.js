@@ -203,14 +203,24 @@
       return faq.fallback;
     }
 
+    // The answer panel has a fixed height and is never empty: an invitation, then
+    // "spelling..." while the planchette moves, then the answer.
+    function note(text, cls) {
+      var p = document.createElement("p");
+      p.className = cls;
+      p.textContent = text;
+      out.textContent = "";
+      out.append(p);
+    }
+
     function showText(answer) {
-      var prefix = document.createElement("span");
+      var prefix = document.createElement("p");
       prefix.className = "ask-prefix";
       prefix.textContent = form.getAttribute("data-prefix");
-      var text = document.createElement("strong");
+      var text = document.createElement("p");
+      text.className = "ask-text";
       text.textContent = answer.text;
       out.textContent = "";
-      out.append(prefix, " ", text);
       // Easter egg: asked who it is, the board shows the mascot.
       if (answer.id === "who") {
         var img = document.createElement("img");
@@ -221,6 +231,7 @@
         img.height = 288;
         out.append(img);
       }
+      out.append(prefix, text);
     }
 
     var asked = 0;
@@ -231,7 +242,7 @@
       if (!answer) return;
       var n = ++asked;
       if (engine && engine.canAnimate()) {
-        out.textContent = "";
+        note(form.getAttribute("data-spelling"), "ask-idle ask-spelling");
         var shown = false;
         var reveal = function () { if (!shown && n === asked) { shown = true; showText(answer); } };
         engine.answer(answer.word).then(reveal);
@@ -251,7 +262,7 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         if (!input.value.trim()) {
-          out.textContent = form.getAttribute("data-empty");
+          note(form.getAttribute("data-empty"), "ask-idle");
           input.focus();
           return;
         }

@@ -4,6 +4,8 @@
   "button": "Demander",
   "prefix": "La planche répond :",
   "empty": "Écris d’abord une question.",
+  "idle": "La planche t’écoute. Pose-lui une question, ou choisis-en une ci-dessous.",
+  "spelling": "Les esprits épellent la réponse",
   "guided_label": "Ou choisis l’une de celles-ci",
   "guided": [
     {

@@ -4,6 +4,8 @@
   "button": "Ask",
   "prefix": "The board says:",
   "empty": "Type a question first.",
+  "idle": "The board is listening. Ask it a question, or pick one below.",
+  "spelling": "The spirits are spelling",
   "guided_label": "Or ask one of these",
   "guided": [
     {

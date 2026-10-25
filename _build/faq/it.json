@@ -4,6 +4,8 @@
   "button": "Chiedi",
   "prefix": "La tavola risponde:",
   "empty": "Scrivi prima una domanda.",
+  "idle": "La tavola ti ascolta. Falle una domanda, o scegline una qui sotto.",
+  "spelling": "Gli spiriti stanno componendo la risposta",
   "guided_label": "Oppure scegli una di queste",
   "guided": [
     {

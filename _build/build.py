@@ -407,7 +407,7 @@ def load_faq(lang, has_cv):
     if lang == "fr":  # French spacing before : ; ? !
         def nb(x):
             return re.sub(r" ([:;?!])", NB + r"\1", x)
-        for k in ("label", "prefix", "empty", "guided_label"):
+        for k in ("label", "prefix", "empty", "idle", "spelling", "guided_label"):
             faq[k] = nb(faq[k])
         for item in faq["guided"]:
             item["question"] = nb(item["question"])
@@ -801,9 +801,9 @@ def page(lang):
         <div class="board">
           {board_svg(t)}
 
-          <p class="ask-answer" id="ask-answer" aria-live="polite"></p>
+          <div class="ask-answer" id="ask-answer" aria-live="polite"><p class="ask-idle">{faq["idle"]}</p></div>
 
-          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}" data-mascot="{up}assets/ouija-small.webp" data-mascot-alt="{html.escape(t["mascot_alt"])}">
+          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}" data-spelling="{html.escape(faq["spelling"])}" data-mascot="{up}assets/ouija-small.webp" data-mascot-alt="{html.escape(t["mascot_alt"])}">
             <label class="ask-label caps" for="ask-q">{faq["label"]}</label>
             <div class="ask-row">
               <input class="ask-input" id="ask-q" name="q" type="text" maxlength="140" spellcheck="false">
