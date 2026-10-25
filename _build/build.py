@@ -346,7 +346,7 @@ def load_faq(lang):
 # ---------- The Ouija board (one inline SVG, viewBox units) ----------
 BOARD_W, BOARD_H = 760, 520
 ARC_CX, ARC_CY = 380, 760          # shared centre of the two letter arcs
-REST = (380, 352)                  # planchette rest point: centre of the board
+REST = (380, 346)                  # planchette rest point: between the arcs and the numbers
 
 # The planchette from the card: an upside-down heart drawn around its window, which sits at (0, 0),
 # with three dots along the base. Also the logo, the hero mark and the favicon.
@@ -386,39 +386,43 @@ def board_svg(t):
     arc("ABCDEFGHIJKLM", 580, 292, 46)
     arc("NOPQRSTUVWXYZ", 488, 256, 42)
     for i, c in enumerate("1234567890"):
-        glyph(c, c, 170 + i * (420 / 9), 412, 30)
-    glyph("YES", t["yes"], 132, 64, 30)
-    glyph("NO", t["no"], 628, 64, 30)
-    glyph("GOODBYE", t["goodbye"], 380, 474, 22)
+        glyph(c, c, 170 + i * (420 / 9), 410, 32)
+    glyph("YES", t["yes"], 136, 66, 30)
+    glyph("NO", t["no"], 624, 66, 30)
+    glyph("GOODBYE", t["goodbye"], 380, 470, 26)
 
     rx, ry = REST
-    # Rules either side of GOODBYE, sized to the translated word (~0.94em per letter with tracking)
-    half = len(t["goodbye"]) * 22 * 0.94 / 2 + 14
+    # Rules either side of GOODBYE, sized to the translated word (~0.98em per Cinzel capital with tracking)
+    half = len(t["goodbye"]) * 26 * 0.98 / 2 + 18
     gl, gr = 380 - half, 380 + half
     trail = "".join(f'<circle r="{4 - i * 0.4:.1f}" cx="0" cy="0"/>' for i in range(7))
     rays = "".join(
-        f'<path d="M{58 + 11 * math.cos(a):.1f} {64 + 11 * math.sin(a):.1f}L{58 + 16 * math.cos(a):.1f} {64 + 16 * math.sin(a):.1f}"/>'
-        for a in [k * math.pi / 4 for k in range(8)]
+        f'<path d="M{62 + 13 * math.cos(a):.1f} {66 + 13 * math.sin(a):.1f}L{62 + 19 * math.cos(a):.1f} {66 + 19 * math.sin(a):.1f}"/>'
+        for a in [k * math.pi / 4 + math.pi / 8 for k in range(8)]
     )
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="2.6"/>' for x, y in PLANCHETTE_DOTS)
+    w = PLANCHETTE_WINDOW
 
+    # The back of the business card: double rounded border, sun by YES, moon by NO,
+    # OUIJA1733 at the top, the alphabet on two arcs, the numbers and GOODBYE between two rules.
     return f'''<svg class="board-svg" viewBox="0 0 {BOARD_W} {BOARD_H}" role="img" aria-labelledby="board-title" data-rest-x="{rx}" data-rest-y="{ry}">
             <title id="board-title">{t["board_title"]}</title>
             <defs>
               <filter id="bd-glow" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3.2" result="blur"/>
-                <feComponentTransfer in="blur" result="soft"><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="blur"/>
+                <feComponentTransfer in="blur" result="soft"><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
                 <feMerge><feMergeNode in="soft"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
-              <clipPath id="pl-window"><circle r="21" cx="0" cy="0"/></clipPath>
+              <clipPath id="pl-window"><circle r="{w}" cx="0" cy="0"/></clipPath>
             </defs>
-            <rect class="bd-face" x="6" y="6" width="{BOARD_W - 12}" height="{BOARD_H - 12}" rx="22"/>
-            <rect class="bd-inner" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="13"/>
+            <rect class="bd-face" x="4" y="4" width="{BOARD_W - 8}" height="{BOARD_H - 8}" rx="28"/>
+            <rect class="bd-inner" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="17"/>
             <g class="bd-ornament">
-              <circle cx="58" cy="64" r="7"/>{rays}
-              <path d="M716 51A12 12 0 1 0 716 73A13 13 0 0 1 716 51Z"/>
-              <path d="M{gl - 60:.0f} 474H{gl:.0f}M{gr:.0f} 474H{gr + 60:.0f}"/>
-              <circle cx="{gl - 68:.0f}" cy="474" r="1.6"/><circle cx="{gr + 68:.0f}" cy="474" r="1.6"/>
+              <circle class="bd-fill" cx="62" cy="66" r="9"/>{rays}
+              <path class="bd-fill" d="M706 50A16 16 0 1 0 706 82A17 17 0 0 1 706 50Z"/>
+              <path d="M{gl - 120:.0f} 470H{gl:.0f}M{gr:.0f} 470H{gr + 120:.0f}"/>
             </g>
+            <text class="bd-title" x="380" y="66">OUIJA1733</text>
             <g id="bd-glyphs" class="bd-glyphs">
               {"".join(glyphs)}
             </g>
@@ -426,14 +430,13 @@ def board_svg(t):
             <g class="pl" transform="translate({rx} {ry})">
               <g class="pl-body">
                 <path class="pl-shape" d="{PLANCHETTE_PATH}"/>
-                <circle class="pl-tip" cx="0" cy="-42" r="2.2"/>
-                <path class="pl-deco" d="M-26 22Q0 32 26 22"/>
+                <g class="pl-dots">{dots}</g>
               </g>
               <g clip-path="url(#pl-window)">
-                <circle class="pl-glass" r="21"/>
+                <circle class="pl-glass" r="{w}"/>
                 <g class="pl-lens" transform="scale(1.2) translate({-rx} {-ry})"><use href="#bd-glyphs"/></g>
               </g>
-              <circle class="pl-ring" r="21"/>
+              <circle class="pl-ring" r="{w}"/>
             </g>
           </svg>'''
 
@@ -647,7 +650,11 @@ def page(lang):
 
           <div class="hero-mark">{planchette_svg("hero-planchette")}</div>
         </div>
+      </div>
+    </section>
 
+    <section class="board-section" id="board" aria-label="{html.escape(faq["label"])}">
+      <div class="wrap">
         <div class="board">
           {board_svg(t)}
 

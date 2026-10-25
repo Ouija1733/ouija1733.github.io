@@ -537,11 +537,17 @@ main > section {
 .mascot:hover img { transform: rotate(-6deg); }
 .mascot figcaption { color: var(--ink-soft); padding-bottom: 6px; }
 
-/* ---------- The board ---------- */
+/* ---------- The board: the back of the card, full width ---------- */
+
+.board-section {
+  background: var(--night);
+  color: var(--candle);
+  padding: clamp(32px, 6vw, 80px) 0 clamp(40px, 6vw, 72px);
+}
 
 .board {
-  max-width: 760px;
-  margin: clamp(48px, 7vw, 88px) auto 0;
+  max-width: 820px;
+  margin: 0 auto;
 }
 
 .board-svg {
@@ -550,17 +556,32 @@ main > section {
   height: auto;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  /* Vertical swipes still scroll the page; taps and sideways drags move the planchette */
+  touch-action: pan-y;
 }
 
-.bd-face { fill: var(--night); stroke: var(--candle); stroke-width: 3; }
-.bd-inner { fill: none; stroke: var(--candle); stroke-width: 1.25; }
+.bd-face { fill: var(--night); stroke: var(--candle); stroke-width: 3.5; }
+.bd-inner { fill: none; stroke: var(--candle); stroke-width: 1.5; }
 
 .bd-ornament {
   fill: none;
   stroke: var(--candle);
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.bd-ornament .bd-fill { fill: var(--candle); stroke: none; }
+
+.bd-title {
+  font-family: var(--font-board);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0.3em;
+  fill: var(--candle);
+  text-anchor: middle;
+  dominant-baseline: central;
 }
 
 .glyph text {
@@ -590,30 +611,29 @@ main > section {
 /* While an answer is on the board, OUIJA steps aside: only touched letters glow */
 .board-svg.answering .glyph.keep:not(.on) .g-lit { opacity: 0; }
 
-/* Planchette */
+/* Planchette: outline only, as on the card */
 .pl-shape {
   fill: var(--night);
-  fill-opacity: 0.9;
+  fill-opacity: 0.88;
   stroke: var(--candle);
-  stroke-width: 1.75;
+  stroke-width: 2;
   stroke-linejoin: round;
 }
 
-.pl-tip { fill: var(--candle); }
-.pl-deco { fill: none; stroke: var(--candle-dim); stroke-width: 1.25; stroke-linecap: round; }
+.pl-dots { fill: var(--candle); }
 .pl-glass { fill: var(--night); }
-.pl-ring { fill: none; stroke: var(--candle); stroke-width: 1.75; }
+.pl-ring { fill: none; stroke: var(--candle); stroke-width: 2; }
 .pl-trail circle { fill: var(--candle); opacity: 0; }
 
 /* Ask the board */
 .ask {
   display: none;
-  margin-top: clamp(20px, 3vw, 28px);
+  margin-top: clamp(16px, 3vw, 24px);
 }
 
 .js .ask { display: grid; gap: 10px; }
 
-.ask-label { color: var(--ink-soft); }
+.ask-label { color: var(--candle-dim); }
 
 .ask-row {
   display: flex;
@@ -624,40 +644,44 @@ main > section {
   flex: 1;
   min-width: 0;
   padding: 12px 14px;
-  background: var(--paper-raised);
-  color: var(--ink);
-  border: 1px solid var(--line-strong);
+  background: var(--night-raised);
+  color: var(--candle);
+  border: 1px solid var(--candle-dim);
   border-radius: var(--radius);
   font: inherit;
   font-size: 1rem;
+  caret-color: var(--candle);
   transition: border-color var(--t-fast) ease;
 }
 
-.ask-input:hover { border-color: var(--ink-soft); }
-.ask-input:focus-visible { outline-offset: 2px; border-color: var(--gold); }
+.ask-input:hover { border-color: var(--candle); }
+
+.board-section :focus-visible { outline-color: var(--candle); }
+.ask-input:focus-visible { outline-offset: 2px; border-color: var(--candle); }
 
 .ask-button {
   flex: none;
   padding: 12px 20px;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--gold);
+  background: var(--candle);
+  color: var(--night);
+  border: 1px solid var(--candle);
   border-radius: var(--radius);
   font-family: var(--font-sans);
   font-size: 0.8125rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color var(--t-fast) ease;
+  transition: background-color var(--t-fast) ease, color var(--t-fast) ease;
 }
 
-.ask-button:hover { background: var(--paper-raised); }
+.ask-button:hover { background: transparent; color: var(--candle); }
 .ask-button:active { transform: translateY(1px); }
 
 .ask-answer {
   min-height: 3.2em;
   margin-top: 16px;
-  color: var(--ink-soft);
+  color: var(--candle-dim);
   font-size: 1.0625rem;
   line-height: 1.5;
 }
@@ -666,13 +690,13 @@ main > section {
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold-text);
+  color: var(--candle-dim);
 }
 
-.ask-answer strong { color: var(--ink); font-weight: 400; }
+.ask-answer strong { color: var(--candle); font-weight: 400; }
 
 .ask-guided { display: grid; gap: 10px; margin-top: 8px; }
-.ask-guided-label { color: var(--ink-soft); }
+.ask-guided-label { color: var(--candle-dim); }
 
 .ask-guided ul {
   display: flex;
@@ -686,19 +710,26 @@ main > section {
 .ask-chip {
   padding: 8px 14px;
   background: transparent;
-  color: var(--ink-soft);
-  border: 1px solid var(--line-strong);
+  color: var(--candle);
+  border: 1px solid var(--candle-line);
   border-radius: 999px;
   font: inherit;
   font-size: 0.9375rem;
   line-height: 1.3;
   text-align: left;
   cursor: pointer;
-  transition: color var(--t-fast) ease, border-color var(--t-fast) ease, background-color var(--t-fast) ease;
+  transition: border-color var(--t-fast) ease, background-color var(--t-fast) ease;
 }
 
-.ask-chip:hover { color: var(--ink); border-color: var(--gold); background: var(--paper-raised); }
+.ask-chip:hover { border-color: var(--candle-dim); background: var(--night-raised); }
 .ask-chip:active { transform: translateY(1px); }
+
+@media (max-width: 560px) {
+  /* On phones the board runs edge to edge (minus the gutter) */
+  .board-section .wrap { padding: 0 12px; }
+  .ask { padding: 0 4px; }
+  .ask-answer { padding: 0 4px; }
+}
 
 @media (max-width: 420px) {
   .ask-button { padding: 12px 14px; }

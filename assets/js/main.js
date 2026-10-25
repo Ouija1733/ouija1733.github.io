@@ -133,6 +133,9 @@
       lit = [];
     }
 
+    // An answer is spelled letter by letter, except YES, NO and GOODBYE, which have their own spot.
+    function steps(word) { return glyphs[word] && word.length > 1 ? [word] : word.split(""); }
+
     // OUIJA stays lit except while an answer is on the board.
     function ouijaOff() { svg.classList.add("answering"); }
     function ouijaOn() { svg.classList.remove("answering"); }
@@ -200,7 +203,7 @@
       // Still board: the answer's letters light up at once, text right away.
       clearLit();
       ouijaOff();
-      answer.word.split("").forEach(function (ch) { light(glyphs[ch]); });
+      steps(answer.word).forEach(function (ch) { light(glyphs[ch]); });
       answerLit = true;
       showText(answer);
       armIdle();
@@ -371,7 +374,7 @@
     // Glide over each character in turn (letters and the 1-0 row); resolves false if interrupted.
     function spell(word, k, t) {
       var prev = null;
-      return word.split("").reduce(function (p, ch) {
+      return steps(word).reduce(function (p, ch) {
         return p.then(function (ok) {
           if (!ok || t !== token) return false;
           if (ch === " ") {
@@ -501,29 +504,62 @@
       }
     };
 
-    /* Following the mouse (mouse only, never touch) */
-    if (finePointer) {
-      svg.addEventListener("pointermove", function (e) {
-        if (e.pointerType !== "mouse" || !introDone || busy()) return;
-        var m = svg.getScreenCTM();
-        if (!m) return;
-        var pt = svg.createSVGPoint();
-        pt.x = e.clientX;
-        pt.y = e.clientY;
-        var p = pt.matrixTransform(m.inverse());
-        if (mode !== "follow") {
-          token++;
-          mode = "follow";
-        }
-        setTarget(p, 110, 1);
-      });
-
-      svg.addEventListener("pointerleave", function () {
-        if (mode !== "follow") return;
-        toRest(9);
-        armIdle();
-      });
+    /* The planchette follows the mouse, and a finger: a tap sends it gliding there, a sideways
+       drag pulls it along. Vertical swipes stay with the page (touch-action: pan-y in the CSS),
+       and the browser then cancels the pointer before the planchette has moved. */
+    function follow(e, k) {
+      if (!introDone || busy()) return;
+      var m = svg.getScreenCTM();
+      if (!m) return;
+      var pt = svg.createSVGPoint();
+      pt.x = e.clientX;
+      pt.y = e.clientY;
+      var p = pt.matrixTransform(m.inverse());
+      if (mode !== "follow") {
+        token++;
+        mode = "follow";
+      }
+      setTarget(p, k, 1);
     }
+
+    var finger = null;      // the touch or pen pointer currently on the board
+    var dragged = false;
+
+    svg.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse") return;
+      finger = e.pointerId;
+      dragged = false;
+    });
+
+    svg.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "mouse") {
+        if (finePointer) follow(e, 110);
+      } else if (e.pointerId === finger) {
+        dragged = true;
+        follow(e, 70);
+      }
+    });
+
+    function lift(e, tap) {
+      if (e.pointerId !== finger) return;
+      finger = null;
+      if (tap && !dragged) follow(e, 40);
+      // It stays where the finger left it; the idle clock takes it from there.
+      if (mode === "follow") {
+        mode = "rest";
+        setNear(null);
+        armIdle();
+      }
+    }
+
+    svg.addEventListener("pointerup", function (e) { lift(e, true); });
+    svg.addEventListener("pointercancel", function (e) { lift(e, false); });
+
+    svg.addEventListener("pointerleave", function (e) {
+      if (e.pointerType !== "mouse" || mode !== "follow") return;
+      toRest(9);
+      armIdle();
+    });
 
     /* Any interaction ends the idle wandering and restarts the idle clock */
     function interact() {
