@@ -9,6 +9,22 @@ NB = "\u202f"  # narrow no-break space for French punctuation
 EMAIL = "menestrina.simone@gmail.com"
 LINKEDIN = "https://www.linkedin.com/in/simone-menestrina/"
 GITHUB = "https://github.com/Ouija1733"
+PHONE = "+39 351 900 9233"
+VCARD = "assets/simone-menestrina.vcf"
+
+# CV per language, relative to the site root. A button only appears once its PDF exists;
+# a language without its own CV falls back to the English one.
+# TODO(Simone): add the PDFs to assets/cv/ and run the build again.
+CV = {"en": "assets/cv/simone-menestrina-cv-en.pdf",
+      "it": "assets/cv/simone-menestrina-cv-it.pdf",
+      "fr": "assets/cv/simone-menestrina-cv-fr.pdf"}
+
+
+def cv_path(lang):
+    for p in (CV[lang], CV["en"]):
+        if os.path.exists(os.path.join(ROOT, p)):
+            return p
+    return None
 
 LANGS = ["en", "it", "fr"]
 PATH = {"en": "", "it": "it/", "fr": "fr/"}
@@ -41,6 +57,9 @@ ICONS = {
     "blocks": '<rect x="3.5" y="13" width="7.5" height="7.5" rx="1.25"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.25"/><rect x="8.25" y="3.5" width="7.5" height="7.5" rx="1.25"/>',
     "check": '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.75 2.75L16.5 9.5"/>',
     "external": '<path d="M7 17 17 7"/><path d="M8.5 7H17v8.5"/>',
+    "phone": '<path d="M5 3.5h3.5l1.75 4.5-2.25 1.5a11 11 0 0 0 6.5 6.5l1.5-2.25 4.5 1.75V19a1.5 1.5 0 0 1-1.5 1.5A16.5 16.5 0 0 1 3.5 5 1.5 1.5 0 0 1 5 3.5z"/>',
+    "download": '<path d="M12 3.5v11"/><path d="M7.5 10.5 12 15l4.5-4.5"/><path d="M4.5 16.5v2a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-2"/>',
+    "card": '<rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8.5" cy="11" r="2.25"/><path d="M5.25 16a3.4 3.4 0 0 1 6.5 0"/><path d="M14.5 10h4M14.5 13.5h3"/>',
 }
 
 
@@ -52,15 +71,16 @@ def icon(name, cls="icon"):
 T = {}
 
 T["en"] = dict(
-    title="Simone Menestrina (Ouija) — Full Stack Developer and AI Integration Specialist",
-    og_title="Simone Menestrina (Ouija) — Full Stack Developer",
-    desc="Simone Menestrina, aka Ouija: full stack developer in Genova with about 6 years of experience building custom web platforms, management systems, desktop and mobile apps and AI integrations.",
+    title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    desc="Simone Menestrina, aka Ouija: full-stack developer from Genova, relocating to Luxembourg, with about 6 years of experience in custom web platforms, management systems, desktop and mobile apps and AI integrations.",
     skip="Skip to content", menu="Menu", nav_label="Main", lang_label="Language",
     nav=["About", "What I do", "Lanterna", "Case studies", "Stack", "Experience", "Contact"],
     yes="YES", no="NO",
-    kicker="Genova — about 6 years of experience",
-    role="Full Stack Developer and AI Integration Specialist",
-    bridge="I sign my work as <strong>Ouija</strong>. Like the board, I act as a bridge between people’s ideas and technology.",
+    kicker="Genova · Relocating to Luxembourg",
+    role="Full-Stack Developer",
+    bridge="About 6 years building web platforms, management systems, desktop and mobile apps and AI integrations. I sign my work as <strong>Ouija</strong>: like the board, a bridge between people’s ideas and technology.",
+    cta_cv="Download CV", cta_contact="Save contact", phone_label="Phone",
     mascot_alt="Ouija, Simone’s mascot: a cartoon character with a dark beret, a white skull-like face, a long braid and fingerless gloves.",
     labels=["About", "What I do", "Personal project", "Case studies", "Stack", "Experience and education", "Contact"],
     about_title="Turning what clients need into software that works.",
@@ -115,7 +135,7 @@ T["en"] = dict(
     stack_kind={"lang": "Language", "fw": "Framework", "rt": "Runtime", "infra": "Containers", "db": "Database", "ai": "AI API"},
     exp_title="Experience and education.",
     exp_h="Experience", edu_h="Education", lang_h="Languages",
-    job_title="Full Stack Developer", job_where="Software house, Genova", job_meta="About 6 years",
+    job_title="Full-Stack Developer", job_where="Software house, Genova", job_meta="About 6 years",
     job_desc="Custom web platforms, management systems, desktop and mobile apps and AI integrations, handling projects end to end, from scoping to support after launch.",
     other_h="Other experience",
     other=["About one year in Java on a point-of-sale and cash-management system for shops and restaurants.",
@@ -130,15 +150,16 @@ T["en"] = dict(
 )
 
 T["it"] = dict(
-    title="Simone Menestrina (Ouija) — Sviluppatore full stack e specialista in integrazioni IA",
-    og_title="Simone Menestrina (Ouija) — Sviluppatore full stack",
-    desc="Simone Menestrina, in arte Ouija: sviluppatore full stack a Genova con circa 6 anni di esperienza in piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale.",
+    title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    desc="Simone Menestrina, in arte Ouija: sviluppatore full-stack di Genova, in trasferimento in Lussemburgo, con circa 6 anni di esperienza in piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale.",
     skip="Vai al contenuto", menu="Menu", nav_label="Principale", lang_label="Lingua",
     nav=["Profilo", "Cosa faccio", "Lanterna", "Casi studio", "Stack", "Esperienza", "Contatti"],
     yes="SÌ", no="NO",
-    kicker="Genova — circa 6 anni di esperienza",
-    role="Sviluppatore full stack e specialista in integrazioni IA",
-    bridge="Firmo i miei lavori come <strong>Ouija</strong>. Come la tavola, faccio da ponte tra le idee delle persone e la tecnologia.",
+    kicker="Genova · In trasferimento in Lussemburgo",
+    role="Full-Stack Developer",
+    bridge="Da circa 6 anni realizzo piattaforme web, gestionali, app desktop e mobile e integrazioni IA. Firmo i miei lavori come <strong>Ouija</strong>: come la tavola, faccio da ponte tra le idee delle persone e la tecnologia.",
+    cta_cv="Scarica il CV", cta_contact="Salva il contatto", phone_label="Telefono",
     mascot_alt="Ouija, la mascotte di Simone: un personaggio a fumetti con un basco scuro, un volto bianco simile a un teschio, una lunga treccia e guanti senza dita.",
     labels=["Profilo", "Cosa faccio", "Progetto personale", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
     about_title="Trasformare le esigenze dei clienti in software che funziona.",
@@ -193,7 +214,7 @@ T["it"] = dict(
     stack_kind={"lang": "Linguaggio", "fw": "Framework", "rt": "Runtime", "infra": "Container", "db": "Database", "ai": "API IA"},
     exp_title="Esperienza e formazione.",
     exp_h="Esperienza", edu_h="Formazione", lang_h="Lingue",
-    job_title="Sviluppatore full stack", job_where="Software house, Genova", job_meta="Circa 6 anni",
+    job_title="Full-Stack Developer", job_where="Software house, Genova", job_meta="Circa 6 anni",
     job_desc="Piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale, seguendo i progetti dall’inizio alla fine: dall’analisi all’assistenza dopo il rilascio.",
     other_h="Altre esperienze",
     other=["Circa un anno in Java su un sistema di punto vendita e gestione cassa per negozi e ristoranti.",
@@ -208,15 +229,16 @@ T["it"] = dict(
 )
 
 T["fr"] = dict(
-    title="Simone Menestrina (Ouija) — Développeur full stack et spécialiste de l’intégration d’IA",
-    og_title="Simone Menestrina (Ouija) — Développeur full stack",
-    desc=f"Simone Menestrina, alias Ouija{NB}: développeur full stack à Gênes avec environ 6 ans d’expérience en plateformes web sur mesure, logiciels de gestion, applications desktop et mobiles et intégrations d’IA.",
+    title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    og_title="Simone Menestrina (Ouija) — Full-Stack Developer",
+    desc=f"Simone Menestrina, alias Ouija{NB}: développeur full-stack originaire de Gênes, en cours d’installation au Luxembourg, avec environ 6 ans d’expérience en plateformes web sur mesure, logiciels de gestion, applications desktop et mobiles et intégrations d’IA.",
     skip="Aller au contenu", menu="Menu", nav_label="Principale", lang_label="Langue",
     nav=["Profil", "Ce que je fais", "Lanterna", "Études de cas", "Stack", "Parcours", "Contact"],
     yes="OUI", no="NON",
-    kicker="Gênes — environ 6 ans d’expérience",
-    role="Développeur full stack et spécialiste de l’intégration d’IA",
-    bridge="Je signe mon travail sous le nom d’<strong>Ouija</strong>. Comme la planche, je fais le lien entre les idées des gens et la technologie.",
+    kicker="Gênes · En cours d’installation au Luxembourg",
+    role="Full-Stack Developer",
+    bridge=f"Depuis environ 6 ans, je développe des plateformes web, des logiciels de gestion, des applications desktop et mobiles et des intégrations d’IA. Je signe mon travail sous le nom d’<strong>Ouija</strong>{NB}: comme la planche, je fais le lien entre les idées des gens et la technologie.",
+    cta_cv="Télécharger le CV", cta_contact="Enregistrer le contact", phone_label="Téléphone",
     mascot_alt=f"Ouija, la mascotte de Simone{NB}: un personnage de bande dessinée avec un béret sombre, un visage blanc en forme de crâne, une longue tresse et des mitaines.",
     labels=["Profil", "Ce que je fais", "Projet personnel", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
     about_title="Transformer les besoins des clients en logiciels qui fonctionnent.",
@@ -271,7 +293,7 @@ T["fr"] = dict(
     stack_kind={"lang": "Langage", "fw": "Framework", "rt": "Runtime", "infra": "Conteneurs", "db": "Base de données", "ai": "API d’IA"},
     exp_title="Expérience et formation.",
     exp_h="Expérience", edu_h="Formation", lang_h="Langues",
-    job_title="Développeur full stack", job_where="Société de développement logiciel, Gênes", job_meta="Environ 6 ans",
+    job_title="Full-Stack Developer", job_where="Société de développement logiciel, Gênes", job_meta="Environ 6 ans",
     job_desc="Plateformes web sur mesure, logiciels de gestion, applications desktop et mobiles et intégrations d’IA, en suivant les projets de bout en bout, du cadrage au support après la mise en production.",
     other_h="Autres expériences",
     other=["Environ un an en Java sur un système de point de vente et de gestion de caisse pour commerces et restaurants.",
@@ -326,8 +348,18 @@ BOARD_W, BOARD_H = 760, 520
 ARC_CX, ARC_CY = 380, 760          # shared centre of the two letter arcs
 REST = (380, 352)                  # planchette rest point: centre of the board
 
-# Planchette drawn around its window, which sits at (0, 0)
-PLANCHETTE_PATH = "M0 -62C21 -44 48 -16 44 12C40 40 -40 40 -44 12C-48 -16 -21 -44 0 -62Z"
+# The planchette from the card: an upside-down heart drawn around its window, which sits at (0, 0),
+# with three dots along the base. Also the logo, the hero mark and the favicon.
+PLANCHETTE_PATH = "M0 -60C17 -45 45 -19 45 8C45 29 35 41 21.5 41C11.5 41 4 36.5 0 31.5C-4 36.5 -11.5 41 -21.5 41C-35 41 -45 29 -45 8C-45 -19 -17 -45 0 -60Z"
+PLANCHETTE_WINDOW = 17
+PLANCHETTE_DOTS = ((-17, 25), (0, 28), (17, 25))
+
+
+def planchette_svg(cls):
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="2.6"/>' for x, y in PLANCHETTE_DOTS)
+    return (f'<svg class="{cls}" viewBox="-50 -65 100 111" aria-hidden="true" focusable="false">'
+            f'<path class="pm-line" d="{PLANCHETTE_PATH}"/><circle class="pm-line" r="{PLANCHETTE_WINDOW}"/>'
+            f'<g class="pm-dots">{dots}</g></svg>')
 
 
 def board_svg(t):
@@ -509,6 +541,7 @@ def page(lang):
     nt = f'<span class="sr-only"> {t["new_tab"]}</span>'
     contacts = [
         ("mail", "Email", f"mailto:{EMAIL}", EMAIL, False),
+        ("phone", t["phone_label"], "tel:" + PHONE.replace(" ", ""), PHONE, False),
         ("profile", "LinkedIn", LINKEDIN, "linkedin.com/in/simone-menestrina", True),
         ("branch", "GitHub", GITHUB, "github.com/Ouija1733", True),
     ]
@@ -520,6 +553,15 @@ def page(lang):
         + f'{icon("external", "icon contact-arrow")}</a></li>'
         for i, (ic, lab, href, val, ext) in enumerate(contacts)
     )
+
+    # "Download CV" + "Save contact": in the hero, in the contacts and in the Moovijob banner
+    cv = cv_path(lang)
+    def actions(cls="actions"):
+        btns = []
+        if cv:
+            btns.append(f'<a class="btn" href="{up}{cv}" download>{icon("download", "icon icon-sm")}{t["cta_cv"]}</a>')
+        btns.append(f'<a class="btn" href="{up}{VCARD}">{icon("card", "icon icon-sm")}{t["cta_contact"]}</a>')
+        return f'<div class="{cls}">{"".join(btns)}</div>'
 
     return f'''<!doctype html>
 <html lang="{lang}">
@@ -549,7 +591,7 @@ def page(lang):
   <meta name="twitter:image:alt" content="{html.escape(t["og_image_alt"])}">
 
   <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="{up}assets/ouija.png">
+  <link rel="apple-touch-icon" href="{up}assets/apple-touch-icon.png">
 
   <link rel="preload" href="{up}assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{up}assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -571,7 +613,7 @@ def page(lang):
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Ouija</a>
+      <a class="brand" href="#top">{planchette_svg("brand-mark")}Simone Menestrina</a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle-icon" aria-hidden="true"></span>{t["menu"]}
@@ -598,14 +640,12 @@ def page(lang):
           <div>
             <p class="hero-kicker caps" {rv()}>{t["kicker"]}</p>
             <h1 class="hero-name" id="hero-name" {rv(1, 90)}>Simone<br>Menestrina</h1>
-            <p class="hero-role" {rv(2, 90)}>{t["role"]}</p>
+            <p class="hero-role caps" {rv(2, 90)}>{t["role"]}</p>
             <p class="hero-bridge" {rv(3, 90)}>{t["bridge"]}</p>
+            {actions("actions hero-actions")}
           </div>
 
-          <figure class="mascot">
-            <span class="mascot-float"><img src="{up}assets/ouija.png" width="377" height="543" alt="{html.escape(t["mascot_alt"])}" fetchpriority="high"></span>
-            <figcaption class="caps">Ouija</figcaption>
-          </figure>
+          <div class="hero-mark">{planchette_svg("hero-planchette")}</div>
         </div>
 
         <div class="board">
@@ -637,9 +677,15 @@ def page(lang):
         </div>
         <div class="about-grid">
           <p class="lead" {rv()}>{t["profile"]}</p>
-          <dl class="facts" {rv(2)}>
+          <div class="about-side" {rv(2)}>
+            <dl class="facts">
 {facts}
-          </dl>
+            </dl>
+            <figure class="mascot">
+              <img src="{up}assets/ouija.png" width="377" height="543" loading="lazy" alt="{html.escape(t["mascot_alt"])}">
+              <figcaption class="caps">Ouija</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -737,6 +783,7 @@ def page(lang):
         <ul class="contact-list">
 {contact_items}
         </ul>
+        {actions("actions contact-actions")}
       </div>
     </section>
   </main>
@@ -752,8 +799,27 @@ def page(lang):
 '''
 
 
+def vcard():
+    """vCard 3.0 behind "Save contact" (CRLF line endings, as the format requires)."""
+    lines = [
+        "BEGIN:VCARD", "VERSION:3.0",
+        "N:Menestrina;Simone;;;", "FN:Simone Menestrina",
+        "TITLE:Full-Stack Developer",
+        f"EMAIL;TYPE=INTERNET:{EMAIL}",
+        "TEL;TYPE=CELL:" + PHONE.replace(" ", ""),
+        f"URL:{SITE}",
+        f"item1.URL:{LINKEDIN.rstrip('/')}", "item1.X-ABLabel:LinkedIn",
+        "ADR;TYPE=WORK:;;;Genova;;;Italy",
+        "END:VCARD",
+    ]
+    with open(os.path.join(ROOT, VCARD), "w", encoding="utf-8", newline="") as f:
+        f.write("\r\n".join(lines) + "\r\n")
+    print("wrote", os.path.join(ROOT, VCARD))
+
+
+vcard()
 for lang in LANGS:
-    out = os.path.join(ROOT, PATH[lang].rstrip("/"), "index.html") if PATH[lang] else os.path.join(ROOT, "index.html")
+    out =os.path.join(ROOT, PATH[lang].rstrip("/"), "index.html") if PATH[lang] else os.path.join(ROOT, "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write(page(lang))

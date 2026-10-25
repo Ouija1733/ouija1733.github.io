@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Menestrina;Simone;;;
+FN:Simone Menestrina
+TITLE:Full-Stack Developer
+EMAIL;TYPE=INTERNET:menestrina.simone@gmail.com
+TEL;TYPE=CELL:+393519009233
+URL:https://ouija1733.github.io/
+item1.URL:https://www.linkedin.com/in/simone-menestrina
+item1.X-ABLabel:LinkedIn
+ADR;TYPE=WORK:;;;Genova;;;Italy
+END:VCARD

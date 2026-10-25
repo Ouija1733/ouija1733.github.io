@@ -205,17 +205,22 @@ a:hover { color: var(--gold-text); }
   margin-right: auto;
 }
 
-/* The brand dot is a tiny planchette window */
+/* The planchette mark (logo, hero): gold outline only */
+.pm-line { fill: none; stroke: currentColor; stroke-width: 3; stroke-linejoin: round; }
+.pm-dots { fill: currentColor; stroke: currentColor; stroke-width: 0; }
+
 .brand-mark {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
+  width: 22px;
+  height: 25px;
   flex: none;
+  color: var(--gold);
   transition: transform var(--t-fast) var(--ease-out);
 }
 
-.brand:hover .brand-mark { transform: scale(1.25); }
+.brand-mark .pm-line { stroke-width: 6; }
+.brand-mark .pm-dots { stroke-width: 4; }
+
+.brand:hover .brand-mark { transform: rotate(-8deg); }
 
 .site-nav ul {
   display: flex;
@@ -427,93 +432,110 @@ main > section {
   line-height: 1;
 }
 
+/* "FULL-STACK DEVELOPER" in gold with the short gold rule under it, as on the card */
 .hero-role {
-  margin-top: 22px;
-  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
-  font-weight: 400;
-  color: var(--ink);
-  max-width: 30ch;
-  line-height: 1.3;
+  margin-top: 24px;
+  font-size: clamp(0.875rem, 1.6vw, 1.0625rem);
+  letter-spacing: 0.3em;
+  color: var(--gold-text);
 }
 
-.hero-role::before {
+.hero-role::after {
   content: "";
   display: block;
-  width: 48px;
+  width: 72px;
   height: 2px;
   background: var(--gold);
-  margin-bottom: 18px;
+  margin-top: 18px;
 }
 
 .hero-bridge {
   margin-top: 22px;
-  max-width: 46ch;
+  max-width: 50ch;
   color: var(--ink-soft);
   font-size: 1.0625rem;
 }
 
 .hero-bridge strong { color: var(--ink); }
 
-/* Planchette window around the mascot */
-.mascot {
-  position: relative;
+/* The big planchette on the right, like the mark on the front of the card */
+.hero-mark {
   justify-self: center;
-  width: min(100%, 360px);
-  aspect-ratio: 1;
-  margin: 0;
-  display: grid;
-  place-items: center;
+  width: min(100%, 300px);
+  color: var(--gold);
 }
 
-.mascot::before,
-.mascot::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
+.hero-planchette { display: block; width: 100%; height: auto; overflow: visible; }
+.hero-planchette .pm-line { stroke-width: 2.25; }
+
+/* Buttons: "Download CV" and "Save contact" */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.mascot::before {
-  inset: 0;
-  background: var(--paper-raised);
-  border: 1px solid var(--line-strong);
-  transition: border-color 0.4s ease;
+.hero-actions { margin-top: 28px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 20px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color var(--t-fast) ease, color var(--t-fast) ease, border-color var(--t-fast) ease;
 }
 
-.mascot::after {
-  inset: 14px;
-  border: 1px dashed var(--line-strong);
-  transition: transform 1.2s var(--ease-out);
+.btn:first-child { background: var(--ink); color: var(--paper); }
+.btn:hover { background: var(--night); border-color: var(--night); color: var(--candle); }
+.btn:active { transform: translateY(1px); }
+.btn .icon { color: inherit; }
+
+.icon-sm { width: 18px; height: 18px; }
+
+@media (max-width: 760px) {
+  .hero-grid { grid-template-columns: 1fr; }
+
+  /* On phones the mark shrinks into the top corner, like on the card */
+  .hero-mark {
+    position: absolute;
+    top: clamp(28px, 6vw, 40px);
+    right: var(--gutter);
+    width: 46px;
+  }
+
+  .hero-planchette .pm-line { stroke-width: 4; }
+  .hero-planchette .pm-dots { stroke-width: 3; }
+  .hero-kicker { padding-right: 60px; }
 }
 
-.mascot-float {
-  position: relative;
-  z-index: 1;
-  width: 62%;
-  display: block;
+@media (max-width: 420px) {
+  .actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* The mascot: small, in About, for whoever scrolls that far */
+.mascot {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 28px 0 0;
 }
 
 .mascot img {
-  width: 100%;
+  width: 88px;
   transition: transform 0.45s var(--ease-out);
 }
 
-.mascot:hover::before { border-color: var(--gold); }
-.mascot:hover::after { transform: rotate(45deg); }
-.mascot:hover img { transform: rotate(-4deg) scale(1.04); }
-
-.mascot figcaption {
-  position: absolute;
-  z-index: 1;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 12px;
-  background: var(--paper);
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink-soft);
-  white-space: nowrap;
-}
+.mascot:hover img { transform: rotate(-6deg); }
+.mascot figcaption { color: var(--ink-soft); padding-bottom: 6px; }
 
 /* ---------- The board ---------- */
 
@@ -677,11 +699,6 @@ main > section {
 
 .ask-chip:hover { color: var(--ink); border-color: var(--gold); background: var(--paper-raised); }
 .ask-chip:active { transform: translateY(1px); }
-
-@media (max-width: 760px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .mascot { width: min(72%, 280px); order: -1; }
-}
 
 @media (max-width: 420px) {
   .ask-button { padding: 12px 14px; }
@@ -1176,6 +1193,8 @@ main > section {
 .contact-list a:hover .contact-label .icon { transform: rotate(-8deg) scale(1.1); }
 .contact-list a:hover .contact-arrow { transform: translate(3px, -3px); }
 
+.contact-actions { margin-top: 32px; }
+
 @media (max-width: 560px) {
   .contact-list a { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; }
   .contact-label { grid-column: 1 / -1; }
@@ -1210,7 +1229,7 @@ main > section {
    visitor has not asked for reduced motion. No JS = everything visible. */
 
 @media (prefers-reduced-motion: no-preference) {
-  .mascot-float { animation: float 6s ease-in-out infinite; }
+  .hero-planchette { animation: float 6s ease-in-out infinite; }
 }
 
 @keyframes float {
