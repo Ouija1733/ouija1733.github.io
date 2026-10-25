@@ -4,128 +4,98 @@
 <head>
   <meta charset="utf-8">
   <title>OG image</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=block">
   <style>
+    @font-face { font-family: "Inter"; font-weight: 400; src: url("../assets/fonts/inter-400.woff2") format("woff2"); font-display: block; }
+    @font-face { font-family: "Inter"; font-weight: 600; src: url("../assets/fonts/inter-600.woff2") format("woff2"); font-display: block; }
+    @font-face { font-family: "Cinzel"; font-weight: 500; src: url("../assets/fonts/cinzel-500.woff2") format("woff2"); font-display: block; }
+    @font-face { font-family: "Cinzel"; font-weight: 700; src: url("../assets/fonts/cinzel-700.woff2") format("woff2"); font-display: block; }
     :root {
-      --bg: #1C2230;
-      --bg-raised: #222A3A;
-      --text: #F3EFE6;
-      --text-muted: #B4B6BC;
-      --text-faint: #8C92A0;
-      --accent: #E0533F;
-      --accent-text: #F07562;
-      --line: rgba(243, 239, 230, 0.14);
-      --line-strong: rgba(243, 239, 230, 0.28);
+      --paper: #FFF9E9;
+      --ink: #332821;
+      --ink-soft: #7A7066;
+      --gold: #CE9A3D;
+      --gold-text: #8F661E;
+      --night: #1D130C;
+      --candle: #F0CB6F;
+      --candle-dim: #A68A4C;
     }
     * { box-sizing: border-box; margin: 0; }
-    html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--bg); }
-    body {
-      position: relative;
-      color: var(--text);
-      font-family: "Bricolage Grotesque", system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    .frame {
-      position: absolute;
-      inset: 24px;
-      border: 1.5px solid var(--line-strong);
-      border-radius: 22px;
-    }
-    .frame::after {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-    }
-    .mono {
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .corner {
-      position: absolute;
-      top: 62px;
-      font-size: 18px;
-      letter-spacing: 0.3em;
-      color: var(--text-faint);
-    }
-    .corner.yes { left: 74px; }
-    .corner.no { right: 74px; }
-    .content {
-      position: absolute;
-      left: 74px;
-      top: 138px;
-      width: 640px;
-    }
-    .kicker { font-size: 18px; color: var(--accent-text); }
-    h1 {
-      margin-top: 18px;
-      font-size: 104px;
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.035em;
-    }
-    .rule { width: 64px; height: 4px; background: var(--accent); margin: 30px 0 22px; }
-    .role {
-      font-size: 34px;
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      max-width: 600px;
-    }
-    .mascot {
-      position: absolute;
-      right: 92px;
-      top: 118px;
-      width: 360px;
-      height: 360px;
-      border-radius: 50%;
-      background: var(--bg-raised);
-      border: 1.5px solid var(--line-strong);
-      display: grid;
-      place-items: center;
-    }
-    .mascot::after {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: 50%;
-      border: 1px dashed var(--line-strong);
-    }
-    .mascot img { position: relative; z-index: 1; width: 64%; filter: drop-shadow(0 10px 0 rgba(0, 0, 0, 0.18)); }
-    .alphabet {
-      position: absolute;
-      left: 74px;
-      right: 74px;
-      bottom: 58px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      color: rgba(243, 239, 230, 0.3);
-    }
-    .alphabet b { font-weight: 500; color: var(--accent); }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--paper); }
+    body { position: relative; color: var(--ink); font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
+    .caps { text-transform: uppercase; letter-spacing: 0.3em; }
+    .content { position: absolute; left: 80px; top: 150px; width: 560px; }
+    .kicker { font-size: 18px; color: var(--ink-soft); }
+    h1 { margin-top: 22px; font-size: 92px; font-weight: 600; line-height: 1; letter-spacing: -0.035em; }
+    .role { margin-top: 34px; font-size: 24px; color: var(--gold-text); }
+    .rule { width: 92px; height: 3px; background: var(--gold); margin-top: 24px; }
+    .card { position: absolute; right: 64px; top: 128px; width: 500px; transform: rotate(4deg); filter: drop-shadow(0 18px 30px rgba(51, 40, 33, 0.25)); }
+    .card svg { display: block; width: 100%; height: auto; }
+    .card text { font-family: "Cinzel", serif; font-weight: 500; fill: var(--candle); text-anchor: middle; dominant-baseline: central; }
+    .card .dim { fill: var(--candle-dim); }
+    .card .bold { font-weight: 700; }
+    .line { fill: none; stroke: var(--candle); stroke-linejoin: round; stroke-linecap: round; }
   </style>
 </head>
 <body>
-  <div class="frame"></div>
-  <span class="corner yes mono">YES</span>
-  <span class="corner no mono">NO</span>
-
   <div class="content">
-    <p class="kicker mono">Ouija · Genova</p>
+    <p class="kicker caps">Genova · Relocating to Luxembourg</p>
     <h1>Simone<br>Menestrina</h1>
+    <p class="role caps">Full-Stack Developer</p>
     <div class="rule"></div>
-    <p class="role">Full Stack Developer and AI Integration Specialist</p>
   </div>
 
-  <div class="mascot"><img src="../assets/ouija.png" alt=""></div>
+  <div class="card"><svg id="board" viewBox="0 0 760 500"></svg></div>
 
-  <div class="alphabet mono" id="abc"></div>
   <script>
-    document.getElementById("abc").innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(function (c) {
-      return "OUIJA".indexOf(c) > -1 ? "<b>" + c + "</b>" : "<span>" + c + "</span>";
-    }).join("");
+    // The back of the card, drawn with the same geometry as the board on the site.
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.getElementById("board");
+    function el(name, attrs, text) {
+      var e = document.createElementNS(NS, name);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (text) e.textContent = text;
+      svg.appendChild(e);
+      return e;
+    }
+    el("rect", { x: 0, y: 0, width: 760, height: 500, rx: 30, fill: "#1D130C" });
+    el("rect", { class: "line", x: 14, y: 14, width: 732, height: 472, rx: 24, "stroke-width": 4 });
+    el("rect", { class: "line", x: 28, y: 28, width: 704, height: 444, rx: 16, "stroke-width": 1.75 });
+    el("text", { x: 380, y: 78, "font-size": 26, "letter-spacing": "0.3em" }, "OUIJA1733");
+    el("text", { x: 150, y: 78, "font-size": 30, class: "bold" }, "YES");
+    el("text", { x: 610, y: 78, "font-size": 30, class: "bold" }, "NO");
+    el("circle", { cx: 88, cy: 78, r: 10, fill: "#F0CB6F" });
+    for (var k = 0; k < 8; k++) {
+      var a = k * Math.PI / 4;
+      el("path", { class: "line", "stroke-width": 2, d: "M" + (88 + 15 * Math.cos(a)) + " " + (78 + 15 * Math.sin(a)) + "L" + (88 + 20 * Math.cos(a)) + " " + (78 + 20 * Math.sin(a)) });
+    }
+    el("path", { d: "M675.1 62A16 16 0 1 0 690.8 84A13.5 13.5 0 1 1 675.1 62Z", fill: "#F0CB6F" });
+    function arc(chars, r, half, size, cy) {
+      var right = Math.acos(half / r) * 180 / Math.PI;
+      var step = (180 - 2 * right) / (chars.length - 1);
+      chars.split("").forEach(function (c, i) {
+        var th = 180 - right - i * step, rad = th * Math.PI / 180;
+        var x = 380 + r * Math.cos(rad), y = cy - r * Math.sin(rad);
+        el("text", { x: x, y: y, "font-size": size, transform: "rotate(" + (90 - th) + " " + x + " " + y + ")", class: "OUIJA".indexOf(c) > -1 ? "" : "dim" }, c);
+      });
+    }
+    arc("ABCDEFGHIJKLM", 580, 292, 44, 742);
+    arc("NOPQRSTUVWXYZ", 488, 256, 40, 742);
+    "1234567890".split("").forEach(function (c, i) { el("text", { x: 170 + i * 420 / 9, y: 398, "font-size": 30, class: "dim" }, c); });
+    el("text", { x: 380, y: 446, "font-size": 24, "letter-spacing": "0.3em" }, "GOODBYE");
+    el("path", { class: "line", "stroke-width": 1.5, d: "M190 446H262M498 446H570" });
+    var p = el("g", { transform: "translate(380 300)" });
+    [["path", { d: "M0 -60C17 -45 45 -19 45 8C45 29 35 41 21.5 41C11.5 41 4 36.5 0 31.5C-4 36.5 -11.5 41 -21.5 41C-35 41 -45 29 -45 8C-45 -19 -17 -45 0 -60Z", fill: "#1D130C" }],
+     ["circle", { r: 17, fill: "none" }]].forEach(function (s) {
+      var e = document.createElementNS(NS, s[0]);
+      for (var k in s[1]) e.setAttribute(k, s[1][k]);
+      e.setAttribute("stroke", "#F0CB6F"); e.setAttribute("stroke-width", 2.5);
+      p.appendChild(e);
+    });
+    [[-17, 25], [0, 28], [17, 25]].forEach(function (d) {
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", d[0]); c.setAttribute("cy", d[1]); c.setAttribute("r", 3); c.setAttribute("fill", "#F0CB6F");
+      p.appendChild(c);
+    });
   </script>
 </body>
 </html>

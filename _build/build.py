@@ -104,7 +104,7 @@ T["en"] = dict(
     learning_note='Through <a href="#projects">FundTracker</a>, a study project: not professional experience yet.',
     cta_cv="Download CV", cta_contact="Save contact", phone_label="Phone",
     moovi="Met me at Moovijob Week? Nice to see you again.", close="Close",
-    card_label="Business card: flip it over", card_hint="Tap the card to flip it",
+    card_label="Business card: flip it over", card_hint="Click or tap the card to flip it",
     mascot_alt="Ouija, Simone’s mascot: a cartoon character with a dark beret, a white skull-like face, a long braid and fingerless gloves.",
     labels=["About", "What I do", "Personal projects", "Case studies", "Stack", "Experience and education", "Contact"],
     about_title="Turning what clients need into software that works.",
@@ -170,7 +170,7 @@ T["en"] = dict(
     contact_title="Get in touch.",
     new_tab="(opens in a new tab)",
     goodbye="GOODBYE",
-    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, next to the Ouija mascot.",
+    og_image_alt="Simone Menestrina, Full-Stack Developer, next to the back of the business card: a gold Ouija board on black.",
     board_title="Ouija board with the alphabet, the numbers, YES, NO and GOODBYE",
 )
 
@@ -204,7 +204,7 @@ T["it"] = dict(
     learning_note='Con <a href="#projects">FundTracker</a>, un progetto di studio: non ancora esperienza professionale.',
     cta_cv="Scarica il CV", cta_contact="Salva il contatto", phone_label="Telefono",
     moovi="Ci siamo conosciuti alla Moovijob Week? Che piacere rivederti.", close="Chiudi",
-    card_label="Biglietto da visita: giralo", card_hint="Tocca il biglietto per girarlo",
+    card_label="Biglietto da visita: giralo", card_hint="Clicca o tocca il biglietto per girarlo",
     mascot_alt="Ouija, la mascotte di Simone: un personaggio a fumetti con un basco scuro, un volto bianco simile a un teschio, una lunga treccia e guanti senza dita.",
     labels=["Profilo", "Cosa faccio", "Progetti personali", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
     about_title="Trasformare le esigenze dei clienti in software che funziona.",
@@ -270,7 +270,7 @@ T["it"] = dict(
     contact_title="Scrivimi.",
     new_tab="(si apre in una nuova scheda)",
     goodbye="ARRIVEDERCI",
-    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, accanto alla mascotte Ouija.",
+    og_image_alt="Simone Menestrina, Full-Stack Developer, accanto al retro del biglietto da visita: una tavola Ouija oro su nero.",
     board_title="Tavola Ouija con l’alfabeto, i numeri, SÌ, NO e ARRIVEDERCI",
 )
 
@@ -304,7 +304,7 @@ T["fr"] = dict(
     learning_note=f'Avec <a href="#projects">FundTracker</a>, un projet d’étude{NB}: pas encore une expérience professionnelle.',
     cta_cv="Télécharger le CV", cta_contact="Enregistrer le contact", phone_label="Téléphone",
     moovi=f"On s’est rencontrés à la Moovijob Week{NB}? Ravi de vous revoir.", close="Fermer",
-    card_label=f"Carte de visite{NB}: la retourner", card_hint="Touchez la carte pour la retourner",
+    card_label=f"Carte de visite{NB}: la retourner", card_hint="Cliquez ou touchez la carte pour la retourner",
     mascot_alt=f"Ouija, la mascotte de Simone{NB}: un personnage de bande dessinée avec un béret sombre, un visage blanc en forme de crâne, une longue tresse et des mitaines.",
     labels=["Profil", "Ce que je fais", "Projets personnels", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
     about_title="Transformer les besoins des clients en logiciels qui fonctionnent.",
@@ -370,7 +370,7 @@ T["fr"] = dict(
     contact_title="Me contacter.",
     new_tab="(s’ouvre dans un nouvel onglet)",
     goodbye="AU REVOIR",
-    og_image_alt="Simone Menestrina, Full Stack Developer and AI Integration Specialist, à côté de la mascotte Ouija.",
+    og_image_alt=f"Simone Menestrina, Full-Stack Developer, à côté du verso de la carte de visite{NB}: une planche Ouija dorée sur fond noir.",
     board_title="Planche Ouija avec l’alphabet, les chiffres, OUI, NON et AU REVOIR",
 )
 
@@ -492,7 +492,7 @@ def board_svg(t):
             <rect class="bd-inner" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="17"/>
             <g class="bd-ornament">
               <circle class="bd-fill" cx="62" cy="66" r="9"/>{rays}
-              <path class="bd-fill" d="M706 50A16 16 0 1 0 706 82A17 17 0 0 1 706 50Z"/>
+              <path class="bd-fill" d="M705.1 50A16 16 0 1 0 720.8 72A13.5 13.5 0 1 1 705.1 50Z"/>
               <path d="M{gl - 120:.0f} 470H{gl:.0f}M{gr:.0f} 470H{gr + 120:.0f}"/>
             </g>
             <text class="bd-title" x="380" y="66">OUIJA1733</text>
@@ -542,7 +542,7 @@ def card_back_svg(t):
             f'<rect class="cb-line cb-outer" x="4" y="4" width="{BOARD_W - 8}" height="{BOARD_H - 8}" rx="28"/>'
             f'<rect class="cb-line" x="18" y="18" width="{BOARD_W - 36}" height="{BOARD_H - 36}" rx="17"/>'
             f'<circle class="cb-fill" cx="62" cy="66" r="9"/><g class="cb-line">{rays}</g>'
-            f'<path class="cb-fill" d="M706 50A16 16 0 1 0 706 82A17 17 0 0 1 706 50Z"/>'
+            f'<path class="cb-fill" d="M705.1 50A16 16 0 1 0 720.8 72A13.5 13.5 0 1 1 705.1 50Z"/>'
             f'<path class="cb-line" d="M{gl - 120:.0f} 470H{gl:.0f}M{gr:.0f} 470H{gr + 120:.0f}"/>'
             f'<g class="cb-text"><text x="380" y="66" font-size="24" letter-spacing="7">OUIJA1733</text>'
             f'<text class="cb-bold" x="136" y="66" font-size="30">{t["yes"]}</text><text class="cb-bold" x="624" y="66" font-size="30">{t["no"]}</text>'
@@ -772,7 +772,7 @@ def page(lang):
         <div class="hero-grid">
           <div>
             <p class="hero-kicker caps" {rv()}>{t["kicker"]}</p>
-            <h1 class="hero-name" id="hero-name" {rv(1, 90)}>Simone<br>Menestrina</h1>
+            <h1 class="hero-name" id="hero-name" {rv(1, 90)}>Simone <br>Menestrina</h1>
             <p class="hero-role caps" {rv(2, 90)}>{t["role"]}</p>
             <p class="hero-bridge" {rv(3, 90)}>{t["bridge"]}</p>
             <p class="print-contacts">{EMAIL} · {PHONE} · linkedin.com/in/simone-menestrina · github.com/Ouija1733 · {SITE.split("//")[1].rstrip("/")}</p>
