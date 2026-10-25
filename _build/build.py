@@ -791,7 +791,7 @@ def page(lang):
 
           <p class="ask-answer" id="ask-answer" aria-live="polite"></p>
 
-          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}" data-mascot="{up}assets/ouija.png" data-mascot-alt="{html.escape(t["mascot_alt"])}">
+          <form class="ask" id="ask" autocomplete="off" data-faq="{html.escape(json.dumps(faq_data, ensure_ascii=False))}" data-prefix="{html.escape(faq["prefix"])}" data-empty="{html.escape(faq["empty"])}" data-mascot="{up}assets/ouija-small.webp" data-mascot-alt="{html.escape(t["mascot_alt"])}">
             <label class="ask-label caps" for="ask-q">{faq["label"]}</label>
             <div class="ask-row">
               <input class="ask-input" id="ask-q" name="q" type="text" maxlength="140" spellcheck="false">
@@ -829,7 +829,7 @@ def page(lang):
 {facts}
             </dl>
             <figure class="mascot">
-              <img src="{up}assets/ouija.png" width="377" height="543" loading="lazy" alt="{html.escape(t["mascot_alt"])}">
+              <img src="{up}assets/ouija-small.webp" width="200" height="288" loading="lazy" alt="{html.escape(t["mascot_alt"])}">
               <figcaption class="caps">Ouija</figcaption>
             </figure>
           </div>

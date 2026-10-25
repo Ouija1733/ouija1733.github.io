@@ -217,8 +217,8 @@
         img.className = "ask-mascot";
         img.src = form.getAttribute("data-mascot");
         img.alt = form.getAttribute("data-mascot-alt");
-        img.width = 377;
-        img.height = 543;
+        img.width = 200;
+        img.height = 288;
         out.append(img);
       }
     }
