@@ -164,8 +164,10 @@ T["en"] = dict(
     job_desc="Custom web platforms, management systems, desktop and mobile apps and AI integrations, handling projects end to end, from scoping to support after launch.",
     other_h="Other experience",
     other=["About one year in Java on a point-of-sale and cash-management system for shops and restaurants.",
-           "Client relationships, project scoping and B2B sales materials."],
-    edu_title="High school diploma in computer science", edu_where="I.I.S. Gastaldi-Abba, Genova",
+           "Client relationships, project scoping and B2B sales materials.",
+           "IT support, STAR S.p.A., Genova (2020).",
+           "Software testing internship, E.T.T. Solutions, Genova (2017–2018)."],
+    edu_title="Diploma in Computer Science and Telecommunications", edu_where="I.I.S. Gastaldi-Abba, Genova",
     langs=[("Italian", "Native"), ("English", "C1"), ("French", "A1")],
     contact_title="Get in touch.",
     new_tab="(opens in a new tab)",
@@ -264,8 +266,10 @@ T["it"] = dict(
     job_desc="Piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale, seguendo i progetti dall’inizio alla fine: dall’analisi all’assistenza dopo il rilascio.",
     other_h="Altre esperienze",
     other=["Circa un anno in Java su un sistema di punto vendita e gestione cassa per negozi e ristoranti.",
-           "Gestione dei rapporti con i clienti, analisi dei progetti e materiali commerciali B2B."],
-    edu_title="Diploma di scuola superiore in informatica", edu_where="I.I.S. Gastaldi-Abba, Genova",
+           "Gestione dei rapporti con i clienti, analisi dei progetti e materiali commerciali B2B.",
+           "Supporto IT, STAR S.p.A., Genova (2020).",
+           "Tirocinio di software testing, E.T.T. Solutions, Genova (2017–2018)."],
+    edu_title="Diploma di Perito in Informatica e Telecomunicazioni", edu_where="I.I.S. Gastaldi-Abba, Genova",
     langs=[("Italiano", "Madrelingua"), ("Inglese", "C1"), ("Francese", "A1")],
     contact_title="Scrivimi.",
     new_tab="(si apre in una nuova scheda)",
@@ -364,8 +368,10 @@ T["fr"] = dict(
     job_desc="Plateformes web sur mesure, logiciels de gestion, applications desktop et mobiles et intégrations d’IA, en suivant les projets de bout en bout, du cadrage au support après la mise en production.",
     other_h="Autres expériences",
     other=["Environ un an en Java sur un système de point de vente et de gestion de caisse pour commerces et restaurants.",
-           "Relation client, cadrage de projets et supports commerciaux B2B."],
-    edu_title="Diplôme d’études secondaires en informatique", edu_where="I.I.S. Gastaldi-Abba, Gênes",
+           "Relation client, cadrage de projets et supports commerciaux B2B.",
+           "Support informatique, STAR S.p.A., Gênes (2020).",
+           "Stage de test logiciel, E.T.T. Solutions, Gênes (2017–2018)."],
+    edu_title="Diplôme technique en informatique et télécommunications", edu_where="I.I.S. Gastaldi-Abba, Gênes",
     langs=[("Italien", "Langue maternelle"), ("Anglais", "C1"), ("Français", "A1")],
     contact_title="Me contacter.",
     new_tab="(s’ouvre dans un nouvel onglet)",
@@ -942,7 +948,7 @@ def page(lang):
             <h3 class="caps">{t["edu_h"]}</h3>
             <div class="entry">
               <h4>{t["edu_title"]}</h4>
-              <p class="meta caps">{t["edu_where"]} · 2020</p>
+              <p class="meta caps">{t["edu_where"]} · 2017 – 2020</p>
             </div>
             <h3 class="caps exp-sub">{t["lang_h"]}</h3>
             <dl class="langs">
