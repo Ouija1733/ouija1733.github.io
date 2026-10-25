@@ -108,7 +108,7 @@ T["en"] = dict(
     mascot_alt="Ouija, Simone’s mascot: a cartoon character with a dark beret, a white skull-like face, a long braid and fingerless gloves.",
     labels=["About", "What I do", "Personal projects", "Case studies", "Stack", "Experience and education", "Contact"],
     about_title="Turning what clients need into software that works.",
-    profile="<strong>I turn what clients need into software that works.</strong> For about 6 years I have built custom web platforms, management systems, desktop and mobile apps and AI integrations at a software house in Genova, handling projects end to end, from scoping to support after launch.",
+    profile="For about 6 years I have built custom web platforms, management systems, desktop and mobile apps and AI integrations at a software house in Genova, handling projects end to end, from scoping to support after launch.",
     facts=[("Based in", "Genova, Italy"), ("Experience", "About 6 years"), ("Signature", "Ouija")],
     services_title="Software built end to end.",
     services=[
@@ -208,7 +208,7 @@ T["it"] = dict(
     mascot_alt="Ouija, la mascotte di Simone: un personaggio a fumetti con un basco scuro, un volto bianco simile a un teschio, una lunga treccia e guanti senza dita.",
     labels=["Profilo", "Cosa faccio", "Progetti personali", "Casi studio", "Stack", "Esperienza e formazione", "Contatti"],
     about_title="Trasformare le esigenze dei clienti in software che funziona.",
-    profile="<strong>Trasformo le esigenze dei clienti in software che funziona.</strong> Da circa 6 anni realizzo piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale presso una software house di Genova, seguendo i progetti dall’inizio alla fine: dall’analisi all’assistenza dopo il rilascio.",
+    profile="Da circa 6 anni realizzo piattaforme web su misura, gestionali, app desktop e mobile e integrazioni di intelligenza artificiale presso una software house di Genova, seguendo i progetti dall’inizio alla fine: dall’analisi all’assistenza dopo il rilascio.",
     facts=[("Sede", "Genova, Italia"), ("Esperienza", "Circa 6 anni"), ("Firma", "Ouija")],
     services_title="Software seguito dall’inizio alla fine.",
     services=[
@@ -308,7 +308,7 @@ T["fr"] = dict(
     mascot_alt=f"Ouija, la mascotte de Simone{NB}: un personnage de bande dessinée avec un béret sombre, un visage blanc en forme de crâne, une longue tresse et des mitaines.",
     labels=["Profil", "Ce que je fais", "Projets personnels", "Études de cas", "Stack technique", "Expérience et formation", "Contact"],
     about_title="Transformer les besoins des clients en logiciels qui fonctionnent.",
-    profile="<strong>Je transforme les besoins de mes clients en logiciels qui fonctionnent.</strong> Depuis environ 6 ans, je développe des plateformes web sur mesure, des logiciels de gestion, des applications desktop et mobiles et des intégrations d’IA au sein d’une société de développement logiciel à Gênes, en suivant les projets de bout en bout, du cadrage au support après la mise en production.",
+    profile="Depuis environ 6 ans, je développe des plateformes web sur mesure, des logiciels de gestion, des applications desktop et mobiles et des intégrations d’IA au sein d’une société de développement logiciel à Gênes, en suivant les projets de bout en bout, du cadrage au support après la mise en production.",
     facts=[("Basé à", "Gênes, Italie"), ("Expérience", "Environ 6 ans"), ("Signature", "Ouija")],
     services_title="Des logiciels suivis de bout en bout.",
     services=[
@@ -942,7 +942,7 @@ def page(lang):
             <h3 class="caps">{t["edu_h"]}</h3>
             <div class="entry">
               <h4>{t["edu_title"]}</h4>
-              <p class="meta caps">{t["edu_where"]} · 2021</p>
+              <p class="meta caps">{t["edu_where"]} · 2020</p>
             </div>
             <h3 class="caps exp-sub">{t["lang_h"]}</h3>
             <dl class="langs">
